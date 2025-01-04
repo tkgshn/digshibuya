@@ -17,9 +17,9 @@ export default function LandingNavbar({ className }: ILandingNavbarProps) {
           <Link className="btn btn-ghost" href="/">
             <Image
               src="/logo-dig-shibuya.png"
-              alt="DigDAOマッチングドネーション"
-              width={103.55}
-              height={32}
+              alt="DIGSHIBUYA 参加型寄付"
+              width={70}
+              height={30}
             />
           </Link>
         </div>

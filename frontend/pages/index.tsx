@@ -75,7 +75,7 @@ export default function Home() {
           name="description"
           content="マッチングドネーション（Quadratic Funding）でお気に入りのプロジェクトに寄付して、公共財を支援しよう"
         />
-        <link rel="icon" href="/favicon2.ico" />
+        <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main className="flex flex-col min-w-screen min-h-screen w-full h-full overflow-x-hidden bg-white">
