@@ -67,7 +67,7 @@ export default function CreatePoolSuccess() {
         <div className="flex flex-row items-center justify-between w-full fixed top-0 px-2 py-4 lg:px-8 lg:py-6">
           <Link className="btn btn-ghost" href="/">
             <Image
-              src="/logo.png"
+              src="/logo-dig-shibuya.png"
               alt="DigDAO マッチングドネーション"
               width={103.55}
               height={32}

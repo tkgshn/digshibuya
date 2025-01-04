@@ -30,6 +30,7 @@
   "dependencies": {
     "@nestjs/cache-manager": "^2.2.2",
     "chart.js": "^4.4.2",
-    "react-chartjs-2": "^5.2.0"
+    "react-chartjs-2": "^5.2.0",
+    "react-tagsinput": "^3.20.3"
   }
 }
