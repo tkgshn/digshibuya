@@ -1,25 +1,33 @@
-# DigDAO マッチングドネーション 💰
+# DIGSHIBUYA 参加型寄付 💰
 
-GitcoinのGrants Stack, clr.fundなどがWeb3（仮想通貨）での寄付を前提しているのに対し、fiat（法定通貨）での寄付を前提としてるQuadratic Funding（QF）のためのプラットフォーム。
+DIGSHIBUYAの一環で参加型寄付を実験するプロジェクトのドキュメントです。
+詳細は、 https://donation.digshibuya.com をご覧ください。
 
-このプロジェクトはOwockiが率いるSupermodulerチームが「Simple Grant」という名で開発されていたが、[頓挫](https://github.com/supermodularxyz/simplegrants)。[現在はGitcoinの下でWeb2 QFツールが開発されているが、途中。](https://github.com/gitcoinco/simplegrants.xyz) この状況により、DigDAO マッチングドネーションでは元々のツールを使うことにした。
 
-## リストにプロジェクトを掲載したい人へ
-- https://scrapbox.io/public-goods-funding/%E5%85%AC%E7%9B%8A%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%81%A8%E3%81%97%E3%81%A6%E6%8E%B2%E8%BC%89%E3%81%97%E3%81%9F%E3%81%84%E4%BA%BA%E3%81%B8 をご覧ください
+このプロジェクトはOwockiが率いるSupermodulerチームが「Simple Grant」という名で開発されていたが、[頓挫](https://github.com/supermodularxyz/simplegrants)。[現在はGitcoinの下でWeb2 QFツールが開発されているが、途中。](https://github.com/gitcoinco/simplegrants.xyz) この状況により、~~DigDAO マッチングドネーション~~ （DIGSHIBUYA 参加型寄付）では元々のツールを使うことにした。
 
-## 主な構造 📄
-
-- [バックエンド](./backend/)
-- [フロントエンド](./frontend/)
+> [!NOTE]
+> DIGSHIBUYA 参加型寄付プロジェクトは、simplegrant→DigDAOと使用されていたものをforkして利用しています。
 
 ## プロジェクトの目的 🎯
-- 現在、クリプト界隈ではQFはメジャーになりつつあるが、それ以外の組織（NPOなど）は使い始めるハードルはかなり高い。
-- デジタル庁からフォークした[DigDAO](https://www.digdao.jp/)としてWeb2のQFプラットフォームを提供することで、新しい資金調達の形を実験する。
+- Quadratic Funding（「参加型寄付」）をアーティスト支援として活用してみる
+- 商業的な作品を作ることで資金を得る以外の方法を模索していく
 
 ## このプロジェクトについて ❓
 
-このプロジェクトは、DigDAOのImpact Fundingプロジェクトメンバーによって進められています。審査制のコミュニティですが、メンバーに声をかけて参加してください。
+DigDAOにて、インパクトファンディングプロジェクトを担当した[tkgshn](https://tkgshn.com)が進めています。
 
+DIGSHIBUYAという実験的なアートフェスティバルを開催するので、資金分配の実験ができないかということで打診をもらいました。
+
+Quadratic Funding（QF）はデジタル公共財に対して使われたケースが多い中、アーティスト・アートの資金的な持続可能性というテーマで進めるのはユニークだと考えています。QFは行政組織などが恣意性を持たずに助成金や補助金を分配する手段としても有効なので、文化事業で実験するのも面白いかなと思います。
+
+## ソフトウェアアーキテクチャー 📄
+
+- [バックエンド](./backend/)
+- [フロントエンド](./frontend/)
+- データベース（Postgres）
+
+DIGSHIBUYA 参加型寄付では、renderにdeployをしています。
 
 ## このリポジトリの使い方 🛠
 
