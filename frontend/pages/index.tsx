@@ -99,7 +99,7 @@ export default function Home() {
           <div className="flex w-full items-center justify-center mt-12 mb-24">
             {/* <Button onClick={() => router.push("/get-started")}> */}
             <Button onClick={() => router.push("/grants")}>
-              アート作品を探す
+              支援するアーティストを探す
             </Button>
           </div>
         </div>
@@ -174,7 +174,7 @@ export default function Home() {
           <div className="flex w-full items-center justify-center mt-16 mb-28">
             {/* <Button onClick={() => router.push("/get-started")}> */}
             <Button onClick={() => router.push("/grants")}>
-              アート作品を探す
+              支援するアーティストを探す
             </Button>
           </div>
         </section>
@@ -320,14 +320,14 @@ export default function Home() {
           </p>
           <div className="flex flex-col">
             <p className="font-bold text-4xl mb-5 z-[2] max-w-4xl">
-              [仮]参加型予算により、従来のトップダウン型の資金分配では見逃されていたアイデアが評価されるようになり、地域社会全体の創造力や文化的価値の底上げにつながると期待しています。
+              参加型予算により、従来の助成金では見逃されていたアイデアが評価されるようになり、地域社会全体の創造力や文化的価値の底上げにつながると期待しています。
             </p>
             <p>宮本 安芸子, 渋谷区 産業観光文化部</p>
           </div>
         </section>
         <section className="flex flex-col w-full items-center justify-center mt-24">
           <h3 className="font-bold text-3xl lg:text-5xl mb-14 text-center">
-            アートの一例
+            アーティストの一例
           </h3>
           <div className="flex flex-col md:flex-row gap-12">
             {data &&
@@ -353,7 +353,7 @@ export default function Home() {
           </p>
           {/* <Button onClick={() => router.push("/get-started")}> */}
           <Button onClick={() => router.push("/grants")}>
-            アート作品一覧を見る
+            支援するアーティストを探す
           </Button>
         </section>
         <div className="relative flex w-full my-16">
@@ -376,7 +376,7 @@ export default function Home() {
             />
             <div className="flex space-x-4">
               <Link
-                href={"https://github.com/dig-dao/simplegrants"}
+                href={"https://github.com/tkgshn/digshibuya/"}
                 target="_blank"
               >
                 <Github className="w-8 fill-sg-secondary cursor-pointer" />
@@ -396,20 +396,20 @@ export default function Home() {
                   プロジェクトについて
                 </p>
               </Link>
-              <p className="font-sm">プレスリリース</p>
+              {/* <p className="font-sm">プレスリリース</p> */}
               <Link href="https://www.digdao.jp/" target="_blank">
                 <p className="font-sm cursor-pointer">実施団体について</p>
               </Link>
             </div>
-            <div className="flex flex-col gap-y-3 mb-6">
+            {/* <div className="flex flex-col gap-y-3 mb-6">
               <p className="font-bold text-xl">連絡先</p>
               <Link
                 href="https://scrapbox.io/public-goods-funding/%E5%85%AC%E7%9B%8A%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%81%A8%E3%81%97%E3%81%A6%E6%8E%B2%E8%BC%89%E3%81%97%E3%81%9F%E3%81%84%E4%BA%BA%E3%81%B8"
                 target="_blank"
               >
-                {/* <p className="font-sm cursor-pointer">
+                <p className="font-sm cursor-pointer">
                   プロジェクトを掲載したい
-                </p> */}
+                </p>
               </Link>
               <Link
                 href="https://scrapbox.io/public-goods-funding/%E3%83%9E%E3%83%83%E3%83%81%E3%83%B3%E3%82%B0%E3%83%89%E3%83%8D%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%92%E4%BC%81%E7%94%BB%E3%81%97%E3%81%A6%E3%80%81%E3%82%A8%E3%82%B3%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0%E3%82%92%E8%82%B2%E3%81%A6%E3%81%9F%E3%81%84%E4%BA%BA%E3%81%B8"
@@ -417,17 +417,17 @@ export default function Home() {
               >
                 <p className="font-sm cursor-pointer">資金を提供したい</p>
               </Link>
-            </div>
+            </div> */}
             <div className="flex flex-col gap-y-3 mb-6">
               <p className="font-bold text-xl">法に関すること</p>
               <Link
-                href="https://github.com/dig-dao/simplegrants/blob/main/terms.md"
+                href="https://github.com/tkgshn/digshibuya/blob/main/terms.md"
                 target="_blank"
               >
                 <p className="font-sm cursor-pointer">利用規約</p>
               </Link>
               <Link
-                href="https://github.com/dig-dao/simplegrants/blob/main/policy.md"
+                href="https://github.com/tkgshn/digshibuya/blob/main/policy.md"
                 target="_blank"
               >
                 <p className="font-sm cursor-pointer">プライバシーポリシー</p>

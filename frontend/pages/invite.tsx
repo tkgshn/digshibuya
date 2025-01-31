@@ -73,10 +73,10 @@ export default function GetStarted() {
   return (
     <div>
       <Head>
-        <title>マッチングファンドへの寄付 | DigDAOマッチングドネーション</title>
+        <title>資金プールへの寄付 | DIGSHIBUYA 参加型寄付</title>
         <meta
           name="description"
-          content="マッチングドネーション（Quadratic Funding）でお気に入りのプロジェクトに寄付して、公共財を支援しよう"
+          content="参加型寄付でお気に入りのアーティストに寄付して支援しよう"
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>

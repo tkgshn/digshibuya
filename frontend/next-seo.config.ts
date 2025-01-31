@@ -1,27 +1,27 @@
 import { DefaultSeoProps } from "next-seo";
 
 const config: DefaultSeoProps = {
-  defaultTitle: "DigDAO マッチングドネーション",
+  defaultTitle: "DIGSHIBUYA 参加型寄付",
   additionalMetaTags: [
     {
       property: "keywords",
       content:
-        "DigDAO, quadratic, funding, quadratic funding, fundraising, raise, grants",
+        "DIGSHIBUYA, quadratic, funding, quadratic funding, fundraising, raise, grants",
     },
   ],
-  canonical: "https://donation.digdao.jp/",
+  canonical: "https://donation.digshibuya.com/",
   openGraph: {
     type: "website",
-    title: "DigDAO マッチングドネーション",
-    description: "マッチングドネーション（Quadratic Funding）でお気に入りのプロジェクトに寄付して、公共財を支援しよう",
-    url: "https://donation.digdao.jp/",
+    title: "DIGSHIBUYA 参加型寄付",
+    description: "違いを力に変える、新しいアーティスト支援の形。参加型寄付でお気に入りのアーティストに寄付して支援しよう",
+    url: "https://donation.digshibuya.com/",
     images: [
       {
-        url: "https://i.gyazo.com/0a84e70567833243895c2eb25277a7b6.png",
+        url: "https://i.gyazo.com/a8a51a5e0b09fced8b9ef3ed9197df77.png",
         // 画像は仮
         width: 1200,
         height: 630,
-        alt: "DigDAO マッチングドネーション - サムネイル画像",
+        alt: "DIGSHIBUYA 参加型寄付 - サムネイル画像",
       }
     ],
   },

@@ -36,7 +36,7 @@ export default function Navbar({
           <Link className="btn btn-ghost" href="/">
             <Image
               src="/logo-dig-shibuya.png"
-              alt="DigDAOマッチングドネーション"
+              alt="DIGSHIBUYA 参加型寄付"
               width={103.55}
               height={32}
             />

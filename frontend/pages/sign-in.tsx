@@ -17,10 +17,10 @@ export default function SignIn({
   return (
     <div>
       <Head>
-        <title>DigDAO マッチングドネーション</title>
+        <title>DIGSHIBUYA 参加型寄付</title>
         <meta
           name="description"
-          content="私たちと一緒に、Quadratic Fundingを通じてインパクトを与えましょう。"
+          content="違いを力に変える、新しいアーティスト支援の形。参加型寄付でお気に入りのアーティストに寄付して支援しよう"
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>

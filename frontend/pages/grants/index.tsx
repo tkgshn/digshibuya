@@ -82,10 +82,10 @@ export default function Grants() {
   return (
     <div>
       <Head>
-        <title>プロジェクト | DigDAOマッチングドネーション</title>
+        <title>アーティスト | DIGSHIBUYA 参加型寄付</title>
         <meta
           name="description"
-          content="マッチングドネーション（Quadratic Funding）でお気に入りのプロジェクトに寄付して、公共財を支援しよう"
+          content="参加型寄付でお気に入りのアーティストに寄付して支援しよう"
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -93,12 +93,12 @@ export default function Grants() {
       <MainLayout>
         <Navbar className="p-0" location="grants">
           {/* <Link href="/grants/create"> */}
-          <Link
+          {/* <Link
             href="https://scrapbox.io/public-goods-funding/%E5%85%AC%E7%9B%8A%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%81%A8%E3%81%97%E3%81%A6%E6%8E%B2%E8%BC%89%E3%81%97%E3%81%9F%E3%81%84%E4%BA%BA%E3%81%B8"
             target="_blank"
           >
             <Button>プロジェクト登録</Button>
-          </Link>
+          </Link> */}
         </Navbar>
         <div className="flex flex-col items-center justify-center px-8 my-20 w-full">
           <div className="flex flex-row w-full items-center justify-center mb-8">

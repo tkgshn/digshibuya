@@ -31,7 +31,7 @@ const nextConfig = {
       // 以下は追加
       {
         protocol: "https",
-        hostname: "www.digdao.jp",
+        hostname: "www.digshibuya.jp",
       },
       {
         protocol: "https",

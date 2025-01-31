@@ -24,9 +24,9 @@ export default function CheckoutSuccess() {
     if (typeof window !== undefined && data) {
       return {
         url: window.location.href,
-        message: `#DigDAOマッチングドネーション実験 で${
+        message: `#DIGSHIBUYA参加型寄付 で${
           data.numberOfItems
-        }件の公益プロジェクトに ${data.donated.toLocaleString(
+        }件のアーティストに ${data.donated.toLocaleString(
           "ja-JP"
         )}円 分の寄付をしました！🥳 #Quadratic_Funding
         \n`,
@@ -113,7 +113,7 @@ export default function CheckoutSuccess() {
                     })}
                     円
                   </b>
-                  分の助成金が資金プールから上乗せされてプロジェクトに分配されます。
+                  分の助成金が資金プールから上乗せされてアーティストに分配されます。
                 </>
               )}
             </p>
@@ -144,7 +144,7 @@ export default function CheckoutSuccess() {
 
             <Link href="/grants">
               <Button className="mt-6" style="secondary">
-                プロジェクト一覧へ戻る
+                アーティスト一覧へ戻る
               </Button>
             </Link>
           </div>
