@@ -245,7 +245,7 @@ export default function Home() {
                 </div>
                 <div className="flex flex-col flex-1">
                   <p className="font-bold text-2xl">
-                    Quadratic Fundingによる分配 / Distribution through Quadratic Funding
+                    Quadratic Fundingによる分配
                   </p>
                   <p>
                     参加型予算の計算にQuadratic Fundingメカニズムを用いることで、幅広いコミュニティから支持されているアート団体が多くの助成金を受け取ることができます。
@@ -266,7 +266,7 @@ export default function Home() {
                   />
                 </div>
                 <div className="flex flex-col flex-1">
-                  <p className="font-bold text-2xl">民主的な資金分配 / Democratic Distribution of Funds</p>
+                  <p className="font-bold text-2xl">民主的な資金分配</p>
                   <p>
                     政府や自治体が分配先を決める従来の助成金とは違い、Quadratic Fundingでは資金プールの分配先・額はあなたたちの寄付によって決定されます。
                   </p>
@@ -286,7 +286,7 @@ export default function Home() {
                   />
                 </div>
                 <div className="flex flex-col flex-1">
-                  <p className="font-bold text-2xl">多くの人に愛される作品が報われる / Works that are Loved by Many Are Rewarded</p>
+                  <p className="font-bold text-2xl">多くの人に愛される作品が報われる</p>
                   <p>
                     「ある作品へ寄付した人の数」は、各個人の寄付額より分配金額に大きな影響を与えるように設計されています。
                   </p>
@@ -306,7 +306,7 @@ export default function Home() {
                   />
                 </div>
                 <div className="flex flex-col flex-1">
-                  <p className="font-bold text-2xl">90億円以上の分配実績を持つメカニズム / A Mechanism with a Track Record of Distributing Over $60M</p>
+                  <p className="font-bold text-2xl">90億円以上の分配実績を持つメカニズム</p>
                   <p>
                     QFは民主的な資金分配の方法として、すでに十分な実績を持っています。Ethereum上の公共財プロジェクトに$60M+の資金分配をしたり、UNICEFからNGOへ資金分配する方法として選ばれています。
                   </p>
