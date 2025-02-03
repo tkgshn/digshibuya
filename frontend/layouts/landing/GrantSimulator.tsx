@@ -64,9 +64,9 @@ const GrantSimulator: React.FC = () => {
                 }}
             >
                 <label>
-                    DIG SHIBUYAによる上乗せ金額: ¥{matchAmount.toLocaleString()}
+                    上乗せ金額 / Matching Pool: ¥{matchAmount.toLocaleString()}
                 </label>
-                <div>プロジェクト数: {grants.length}</div>
+                <div>プロジェクト数 / Number of Projects: {grants.length}</div>
             </div>
             <div style={{ display: "grid", gap: "10px" }}>
                 {/* テーブルヘッダー */}
@@ -80,10 +80,10 @@ const GrantSimulator: React.FC = () => {
                         columnGap: "30px", // 列の間にマージンを追加
                     }}
                 >
-                    <div>プロジェクト</div>
-                    <div>支援</div>
-                    <div>支援総額</div>
-                    <div>上乗せ額</div>
+                    <div>プロジェクト / Project</div>
+                    <div>支援 / Contributions</div>
+                    <div>支援総額 / Total Contributions</div>
+                    <div>上乗せ額 / Matching Amount</div>
                 </div>
                 {/* テーブルボディ */}
                 {grants.map((grant, index) => (
@@ -100,12 +100,13 @@ const GrantSimulator: React.FC = () => {
                             columnGap: "20px", // 列の間にマージンを追加
                         }}
                     >
-                        <strong>プロジェクト #{index + 1}</strong>
+                        <strong>Project #{index + 1}</strong>
                         <TagsInput
+                            onlyUnique={false}
                             value={grant.contributions.map((c) => c.toString())}
                             onChange={(tags) => handleTagChange(tags, index)}
                             inputProps={{
-                                placeholder: "寄付を追加",
+                                placeholder: "寄付を追加 / Add Donation",
                                 style: {
                                     backgroundColor: '#fff', // 背景色を白に
                                     borderRadius: '5px', // 角の丸さを統一
@@ -114,7 +115,6 @@ const GrantSimulator: React.FC = () => {
                                     // width: '50%', //これは効いてないな~~~
                                 }
                             }}
-                            onlyUnique
                         />
                         <div>¥{grant.total.toLocaleString()}</div>
                         <div>¥{grant.match.toLocaleString()}</div>

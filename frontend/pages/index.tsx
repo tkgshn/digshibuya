@@ -82,24 +82,24 @@ export default function Home() {
         {/* 一旦背景を白に */}
         <LandingNavbar className="z-[2] absolute top-0 left-0" />
 
-        <div className="flex flex-col w-full items-center justify-center min-h-[100vh] text-center px-2 pt-32 md:pt-0">
+        <div className="flex flex-col w-full items-center justify-center min-h-[100vh] text-center px-2 pt-48 md:pt-24">
           {/* <Fade bottom distance="15px"> */}
           <h1 className="font-bold text-3xl md:text-5xl max-w-2xl md:leading-snug">
-            違いを力に変える、新しいアーティスト支援の形
+            テクノロジーを活用した参加型アーティスト支援プロジェクト<br />
+            Participatory Artist Support Project
           </h1>
           <p className="mt-3 text-lg md:text-xl">
-            あなたの100円の支援が1,000円になってアーティストに届く。
-            あなたの寄付に対してDIG SHIBUYAが金額を上乗せ！
+            あなたの寄付と投票の結果に基づきDIG SHIBUYAが追加支援します。<br />
+            Your donations and votes will be matched by DIG SHIBUYA.
           </p>
           {/* </Fade> */}
           <div className="flex justify-center items-center mt-8">
             <img src="/assets/fitcurve.gif" alt="fitcurve" width="400" height="200" />
           </div>
-
           <div className="flex w-full items-center justify-center mt-12 mb-24">
             {/* <Button onClick={() => router.push("/get-started")}> */}
             <Button onClick={() => router.push("/grants")}>
-              支援するアーティストを探す
+              支援先を探す / Find Artist Collective
             </Button>
           </div>
         </div>
@@ -107,7 +107,7 @@ export default function Home() {
 
 
 
-        <div className="relative flex w-full -translate-y-[57%]">
+        <div className="relative flex w-full -translate-y-[57%] pointer-events-none">
           <Image
             src="/assets/abstract.svg"
             width={1920}
@@ -119,73 +119,111 @@ export default function Home() {
 
         <div className="relative flex flex-col items-center w-full md:-translate-y-[30%] translate-y-10">
 
-          <div className="bg-[#0055B2] text-white p-6 mt-8 rounded-lg w-full max-w-[350px] md:max-w-[400px] lg:max-w-[500px] text-left">
+          <div className="bg-[#0055B2] text-white p-6 mt-8 rounded-lg w-full max-w-[350px] md:max-w-[400px] lg:max-w-[600px] text-left">
             {/* 背景色は青にしている */}
-            <p>
-              DIG SHIBUYAではアーティストへの制作資金提供のほか、来場者による寄付を元にボーナス資金を分配する「参加型予算」という仕組みを実験しています。
-            </p>
-            <p className="mt-4">
-              一人の人に愛される（商業的にうまくいく）アーティストよりも、多くの人に（少額であっても）愛されるアーティストに寄付が流通する仕組みです。
-            </p>
+            <div className="space-y-4">
+
+              <p className="text-lg">
+                期間中、12の公募プログラムの作品を見ていただき、応援したい団体に寄付をお願いします. 1票100円から投票及び寄付することができます.
+              </p>
+              <p className="mt-4 text-lg">
+                こちらの企画はクオドラディック・ファンディングというテクノロジーを使った分配の仕組みを使っています.
+              </p>
+              <p className="text-lg">
+                なお、本プロジェクトの資金の一部は、ブロックチェーンの非営利団体CardanoのCatalystというグラントプログラムより支援いただいています.
+              </p>
+              <hr className="my-6 border-gray-300" />
+              <div className="space-y-2">
+
+                <p className="text-base">
+                  Traditionally, subsidies have been decided by the decisions of panel judges, but with this participatory subsidy system, subsidies will be distributed equally in line with your donations (votes), so your will can be reflected in the subsidies.
+                </p>
+              </div>
+              <p className="text-base mt-2">
+                This project uses a technology-based distribution system called quadratic funding.
+              </p>
+              <p className="text-base mt-2">
+                In addition, the matching subsidy this time is also being funded by a grant program called Catalyst run by Cardano, a blockchain non-profit organization.
+              </p>
+            </div>
           </div>
         </div>
 
 
         <section className="px-8 md:px-18 lg:px-36 mt-16">
           <h2 className="font-bold text-3xl md:text-5xl mt-12 lg:mt-0 mb-5">
-            100円の寄付が1,000円を動かす理由
+            100円の寄付が1000円を動かす理由<br />Why a 100 yen donation can move 1,000 yen?
           </h2>
-          <p className="mb-2 max-w-2xl;
-">
-            {`DIG SHIBUYAではアーティストへの資金提供の一環として、「参加型予算」の実験を行っています。有識者である一部の人たちが選んだアーティストだけが資金を受け取るのではなく、みんなの寄付に応じて資金を分配する試みです。`}
-          </p>
+          <div className="mb-2">
+            <p>
+              これまでの補助金のあり方は、選定する一部の方の決断で決まっていましたが、今回の参加型のアーティスト支援では、皆さんの寄付（投票）に連動して分配されるので、配分に皆さんの意思を反映することができます.
+            </p>
+            <p className="mt-2">
+              Traditionally, subsidies have been decided by the decisions of panel judges, but with this participatory subsidy system, subsidies will be distributed equally in line with your donations (votes), so your will can be reflected in the subsidies.
+            </p>
+          </div>
         </section>
 
 
         <div className="flex justify-center items-center m-8">
-          <img src="/assets/userflow.svg" alt="userflow.svg" width="600" height="600" />
+          <img src="/assets/DIGSHIBUYA_QF_userflow.svg" alt="DIGSHIBUYA_QF_userflow" width="600" height="600" />
         </div>
 
         <section className="px-8 md:px-18 lg:px-36">
           <div className="flex flex-wrap w-full items-center justify-center gap-x-12 gap-y-8">
-            <div className="flex flex-col h-[400px] w-full max-w-[350px] px-9 py-12 bg-white rounded-2xl border border-[#D9A596]">
-              <p className="font-bold text-3xl mb-10">寄付を行う</p>
-              <p>
-                お気に入りのアーティスト・作品を見つけたら、寄付してみましょう！
-                <br></br>
-                あなたの支援に対して、（アーティストが受け取った金額・人数に応じて）金額が上乗せされます。
-              </p>
+            <div className="flex flex-col min-h-[400px] w-full max-w-[350px] px-9 py-12 bg-white rounded-2xl border border-[#D9A596]">
+              <p className="font-bold text-3xl mb-6">寄付を行う / Make a Donation</p>
+              <div className="space-y-2">
+                <p className="text-lg">
+                  公募プログラムの展示をみたら、寄付（投票）をしましょう。
+                </p>
+                <p className="text-lg">
+                  <strong>Make a donation</strong><br />
+                  After viewing the exhibition of the open-call program of DIG SHIBUYA, donate (vote) through this site.
+                </p>
+              </div>
             </div>
-            <div className="flex flex-col h-[400px] w-full max-w-[350px] px-9 py-12 bg-white rounded-2xl border border-[#D9A596]">
-              <p className="font-bold text-3xl mb-10">DIG SHIBUYAが金額を上乗せ</p>
-              <p>
-                今回は、合計100万円分の上乗せ資金を用意しました！このお金は、あなたの寄付に応じて分配されます。
-              </p>
+            <div className="flex flex-col min-h-[400px] w-full max-w-[350px] px-9 py-12 bg-white rounded-2xl border border-[#D9A596]">
+              <p className="font-bold text-3xl mb-6">DIG SHIBUYAの資金を上乗せ / Matching Funds from DIG SHIBUYA</p>
+              <div className="space-y-2">
+                <p className="text-lg">
+                  寄付数ｘ投票人数に連動して、アーティスト団体への支援金100万円の分配額が決まります。
+                </p>
+                <p className="text-lg">
+                  <strong>Subsidies from DIG SHIBUYA will be added on top of this.</strong><br />
+                  The amount of the 1 million yen subsidy to be distributed to the artist collective will be determined based on the number of donations x the number of votes.
+                </p>
+              </div>
             </div>
-            <div className="flex flex-col h-[400px] w-full max-w-[350px] px-9 py-12 bg-white rounded-2xl border border-[#D9A596]">
-              <p className="font-bold text-3xl mb-10">支援がアーティストへ届く</p>
-              <p>
-                今までは一部の審査員やお金持ちに認められる作品を作ることがアーティストにとってお金を得る方法でした。
-                <br></br>
-                しかし、この実験ではそれぞれのアーティストは寄付に応じて分配された資金を受け取ることができます。
-              </p>
+            <div className="flex flex-col min-h-[400px] w-full max-w-[350px] px-9 py-12 bg-white rounded-2xl border border-[#D9A596]">
+              <p className="font-bold text-3xl mb-6">みなさんの応援がアーティストへ / Your Support Reaches the Artists</p>
+              <div className="space-y-2">
+                <p className="text-lg">
+                  特定の審査委員が決めた配分ではなく、みなさんの寄付と応援したい想いが、アーティストに届きます。
+                </p>
+                <p className="text-lg">
+                  <strong>Your support goes to the artists</strong><br />
+                  The artists will be reached not by subsidies decided by a panel of judges, but by your donations and your desire to support them.
+                </p>
+              </div>
             </div>
           </div>
           <div className="flex w-full items-center justify-center mt-16 mb-28">
             {/* <Button onClick={() => router.push("/get-started")}> */}
             <Button onClick={() => router.push("/grants")}>
-              支援するアーティストを探す
+              支援先を探す / Find Artist Collective
             </Button>
           </div>
         </section>
 
         <section className="px-8 md:px-18 lg:px-36">
           <h2 className="font-bold text-3xl md:text-5xl mt-12 lg:mt-0 mb-5">
-            参加型予算の仕組み
+            参加型予算の仕組み / Participatory Budgeting Mechanism
           </h2>
-          <p className="mb-2 max-w-2xl;
-">
+          <p className="mb-2 max-w-2xl;">
             {`それぞれのアーティストが受け取った額と支援者の数によって上乗せ金額が計算されます。以下は簡単なシュミレーションです、DIG SHIBUYAが総額100万円の上乗せ予算を持ち、4つのアーティストがいた場合どのようにして上乗せ額が変わるでしょうか。実際に支援の額を入力してみて試してみてください！`}
+            <br />
+            {`The amount of additional funding is calculated based on the amount received by each artist and the number of supporters. Below is a simple simulation. If DIG SHIBUYA has a total additional budget of 1 million yen and there are four artists, how will the additional amount change? Try entering the amount of support to see for yourself!`}
           </p>
 
           <GrantSimulator />
@@ -202,11 +240,14 @@ export default function Home() {
                 </div>
                 <div className="flex flex-col flex-1">
                   <p className="font-bold text-2xl">
-                    Quadratic Fundingによる分配
+                    Quadratic Fundingによる分配 / Distribution through Quadratic Funding
                   </p>
                   <p>
-                    参加型予算の計算にQuadratic
-                    Fundingメカニズムを用いることで、幅広いコミュニティから支持されているアート作品が多くの助成金を受け取ることができます。
+                    参加型予算の計算にQuadratic Fundingメカニズムを用いることで、幅広いコミュニティから支持されているアート団体が多くの助成金を受け取ることができます。
+                  </p>
+                  <p className="text-lg">
+                    <strong>Distribution through Quadratic Funding</strong><br />
+                    Using the Quadratic Funding mechanism for participatory budget calculations, art collectives that have broad community support can receive more grant funding.
                   </p>
                 </div>
               </div>
@@ -220,11 +261,13 @@ export default function Home() {
                   />
                 </div>
                 <div className="flex flex-col flex-1">
-                  <p className="font-bold text-2xl">民主的な資金分配</p>
-
+                  <p className="font-bold text-2xl">民主的な資金分配 / Democratic Distribution of Funds</p>
                   <p>
-                    政府や自治体が分配先を決める従来の助成金とは違い、Quadratic
-                    Fundingでは資金プールの分配先・額はあなたたちの寄付によって決定されます。
+                    政府や自治体が分配先を決める従来の助成金とは違い、Quadratic Fundingでは資金プールの分配先・額はあなたたちの寄付によって決定されます。
+                  </p>
+                  <p className="text-lg">
+                    <strong>Democratic distribution of funds</strong><br />
+                    Unlike traditional grants, where governments or local authorities decide where grants are distributed, with Quadratic Funding, the amount and recipients of the pool of funds are decided by your donations.
                   </p>
                 </div>
               </div>
@@ -238,11 +281,13 @@ export default function Home() {
                   />
                 </div>
                 <div className="flex flex-col flex-1">
-                  <p className="font-bold text-2xl">
-                    多くの人に愛される作品が報われる
-                  </p>
+                  <p className="font-bold text-2xl">多くの人に愛される作品が報われる / Works that are Loved by Many Are Rewarded</p>
                   <p>
                     「ある作品へ寄付した人の数」は、各個人の寄付額より分配金額に大きな影響を与えるように設計されています。
+                  </p>
+                  <p className="text-lg">
+                    <strong>Works that are loved by many people are rewarded</strong><br />
+                    The number of people who donate to a particular work is designed to have a greater impact on the amount distributed than the amount of each individual donation.
                   </p>
                 </div>
               </div>
@@ -256,11 +301,13 @@ export default function Home() {
                   />
                 </div>
                 <div className="flex flex-col flex-1">
-                  <p className="font-bold text-2xl">
-                    90億円以上の分配実績を持つメカニズム
-                  </p>
+                  <p className="font-bold text-2xl">90億円以上の分配実績を持つメカニズム / A Mechanism with a Track Record of Distributing Over $60M</p>
                   <p>
                     QFは民主的な資金分配の方法として、すでに十分な実績を持っています。Ethereum上の公共財プロジェクトに$60M+の資金分配をしたり、UNICEFからNGOへ資金分配する方法として選ばれています。
+                  </p>
+                  <p className="text-lg">
+                    <strong>A mechanism with a track record of distributing over $60M</strong><br />
+                    QF already has a proven track record as a democratic method of distributing funds, having distributed $60M+ to public goods projects on Ethereum and been chosen by UNICEF to distribute funds to NGOs.
                   </p>
                 </div>
               </div>
@@ -276,7 +323,7 @@ export default function Home() {
                 )
               }
             >
-              Quadratic Fundingについてより詳しく{" "}
+              Quadratic Fundingについてより詳しく / Learn more about Quadratic Funding{" "}
               <ArrowTopRightIcon className="ml-2" />
             </Button>
           </div>
@@ -284,7 +331,7 @@ export default function Home() {
 
         <section className="flex flex-col w-full items-center justify-center">
           <h2 className="font-bold text-3xl md:text-5xl mb-8">
-            実験パートナー
+            partner
           </h2>
         </section>
         <div className="flex flex-wrap justify-center mb-16">
@@ -316,18 +363,22 @@ export default function Home() {
 
         <section className="flex flex-row w-full justify-center bg-sg-primary px-8 md:px-24 lg:px-48 xl:px-96 py-28 gap-x-4">
           <p className="font-bold text-[128px] text-[#99BCD1] leading-none -translate-y-6 absolute left-0 md:relative">
-            “
+            "
           </p>
           <div className="flex flex-col">
             <p className="font-bold text-4xl mb-5 z-[2] max-w-4xl">
               参加型予算により、従来の助成金では見逃されていたアイデアが評価されるようになり、地域社会全体の創造力や文化的価値の底上げにつながると期待しています。
             </p>
+            <p className="font-bold text-4xl mb-5 z-[2] max-w-4xl">
+              We hope that participatory budgeting will enable ideas that would be overlooked through traditional grants to be recognized, thereby raising the level of creativity and cultural value throughout the local community.
+            </p>
             <p>宮本 安芸子, 渋谷区 産業観光文化部</p>
+            <p>Akiko Miyamoto, Director of Industry, Tourism and Cultural Division, Shibuya City Office</p>
           </div>
         </section>
         <section className="flex flex-col w-full items-center justify-center mt-24">
           <h3 className="font-bold text-3xl lg:text-5xl mb-14 text-center">
-            アーティストの一例
+            アーティストの一例 / Example Artists
           </h3>
           <div className="flex flex-col md:flex-row gap-12">
             {data &&
@@ -346,14 +397,17 @@ export default function Home() {
         </section>
         <section className="flex flex-col w-full items-center justify-center text-center mt-40 px-8 md:px-24 lg:px-48 xl:px-96">
           <h3 className="font-bold text-3xl lg:text-5xl">
-            あなたの寄付がアーティストを支える
+            あなたの寄付がアーティストを支える / Your Donations Support Artists
           </h3>
           <p className="mt-3 mb-10 text-lg md:text-xl">
-            100円からでもアーティストに資金を提供できます。
+            あなたの寄付がアーティストを支える<br />
+            100円からでもアーティストに資金を提供できます。<br />
+            Your donations support artists<br />
+            Even just 100 yen can help fund an artist.
           </p>
           {/* <Button onClick={() => router.push("/get-started")}> */}
           <Button onClick={() => router.push("/grants")}>
-            支援するアーティストを探す
+            支援先を探す / Find Artist Collective
           </Button>
         </section>
         <div className="relative flex w-full my-16">
@@ -393,12 +447,12 @@ export default function Home() {
                 target="_blank"
               >
                 <p className="font-bold text-xl cursor-pointer">
-                  プロジェクトについて
+                  プロジェクトについて / About the Project
                 </p>
               </Link>
               {/* <p className="font-sm">プレスリリース</p> */}
               <Link href="https://www.digdao.jp/" target="_blank">
-                <p className="font-sm cursor-pointer">実施団体について</p>
+                <p className="font-sm cursor-pointer">実施団体について / About the Organization</p>
               </Link>
             </div>
             {/* <div className="flex flex-col gap-y-3 mb-6">
@@ -419,18 +473,18 @@ export default function Home() {
               </Link>
             </div> */}
             <div className="flex flex-col gap-y-3 mb-6">
-              <p className="font-bold text-xl">法に関すること</p>
+              <p className="font-bold text-xl">法に関すること / Legal Information</p>
               <Link
                 href="https://github.com/tkgshn/digshibuya/blob/main/terms.md"
                 target="_blank"
               >
-                <p className="font-sm cursor-pointer">利用規約</p>
+                <p className="font-sm cursor-pointer">利用規約 / Terms of Service</p>
               </Link>
               <Link
                 href="https://github.com/tkgshn/digshibuya/blob/main/policy.md"
                 target="_blank"
               >
-                <p className="font-sm cursor-pointer">プライバシーポリシー</p>
+                <p className="font-sm cursor-pointer">プライバシーポリシー / Privacy Policy</p>
               </Link>
             </div>
           </div>

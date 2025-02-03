@@ -62,9 +62,9 @@ export default function Home() {
           {/* <Link href="/grants/create">
             <Button>プロジェクト登録</Button>
           </Link> */}
-          <Link href="https://scrapbox.io/public-goods-funding/%E5%85%AC%E7%9B%8A%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%81%A8%E3%81%97%E3%81%A6%E6%8E%B2%E8%BC%89%E3%81%97%E3%81%9F%E3%81%84%E4%BA%BA%E3%81%B8" target="_blank">
+          {/* <Link href="https://scrapbox.io/public-goods-funding/%E5%85%AC%E7%9B%8A%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%81%A8%E3%81%97%E3%81%A6%E6%8E%B2%E8%BC%89%E3%81%97%E3%81%9F%E3%81%84%E4%BA%BA%E3%81%B8" target="_blank">
             <Button>プロジェクト登録</Button>
-          </Link>
+          </Link> */}
         </Navbar>
         {loading ? (
           <></>
@@ -84,7 +84,7 @@ export default function Home() {
                   <p className="mt-4 my-12 line-clamp-4">{data.bio}</p>
 
                   <p className="font-bold text-xl text-sg-accent">
-                    プロジェクトへの寄付
+                    アーティストへの寄付
                   </p>
                   <p className="text-xl mb-5">
                     {" "}
@@ -113,7 +113,7 @@ export default function Home() {
 
 
                   <p className="font-bold text-xl text-sg-accent">
-                    自分のプロジェクトが受け取った寄付
+                    自分が受け取った寄付
                   </p>
                   <p className="text-xl mb-5">
                     {" "}
@@ -155,7 +155,7 @@ export default function Home() {
                         className="data-[state=active]:text-sg-accent data-[state=active]:underline"
                         value="donations"
                       >
-                        プロジェクトへの寄付
+                        アーティストへの寄付
                       </Tabs.Trigger>
                       <Tabs.Trigger
                         className="data-[state=active]:text-sg-accent data-[state=active]:underline"
