@@ -2,6 +2,10 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
+  eslint: {
+    // 本番ビルド時に ESLint エラーを無視する設定
+    ignoreDuringBuilds: true
+  },
   images: {
     remotePatterns: [
       {

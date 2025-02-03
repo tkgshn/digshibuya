@@ -94,7 +94,12 @@ export default function Home() {
           </p>
           {/* </Fade> */}
           <div className="flex justify-center items-center mt-8">
-            <img src="/assets/fitcurve.gif" alt="fitcurve" width="400" height="200" />
+            <Image
+              src="/assets/fitcurve.gif"
+              alt="fitcurve"
+              width={400}
+              height={200}
+            />
           </div>
           <div className="flex w-full items-center justify-center mt-12 mb-24">
             {/* <Button onClick={() => router.push("/get-started")}> */}
@@ -166,7 +171,7 @@ export default function Home() {
 
 
         <div className="flex justify-center items-center m-8">
-          <img src="/assets/DIGSHIBUYA_QF_userflow.svg" alt="DIGSHIBUYA_QF_userflow" width="600" height="600" />
+          <Image src="/assets/DIGSHIBUYA_QF_userflow.svg" alt="DIGSHIBUYA_QF_userflow" width={600} height={600} />
         </div>
 
         <section className="px-8 md:px-18 lg:px-36">
