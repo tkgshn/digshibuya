@@ -326,6 +326,19 @@ export default function GrantsCheckout() {
                   </p>
                 )}
 
+                <div className="flex flex-col w-full items-start justify-between mt-4 mb-4 bg-gray-100 p-3 rounded-md">
+                  <p className="flex text-ellipsis truncate justify-start text-sm font-semibold text-gray-700">
+                    現在の寄付状況に基づき計算されている推計です。
+                  </p>
+                  <p className="flex text-ellipsis truncate justify-start text-sm font-semibold text-gray-700 mt-1">
+                    最終寄付額は追って
+                    <a href="https://donation.digshibuya.com" className="text-blue-500 underline ml-1">
+                      donation.digshibuya.com
+                    </a>
+                    にて公開します。
+                  </p>
+                </div>
+
                 <Button
                   onClick={handleCheckout}
                   width="full"
