@@ -48,14 +48,14 @@ export default function SignIn({
           <div className="mt-10">
             <Link
               className="mx-1"
-              href="https://github.com/dig-dao/simplegrants/blob/main/terms.md"
+              href="https://github.com/tkgshn/digshibuya/blob/main/terms.md"
               target="_blank"
             >
               利用規約
             </Link>
             <Link
               className="mx-1"
-              href="https://github.com/dig-dao/simplegrants/blob/main/policy.md"
+              href="https://github.com/tkgshn/digshibuya/blob/main/policy.md"
               target="_blank"
             >
               プライバシーポリシー
