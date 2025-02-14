@@ -129,26 +129,10 @@ export default function Home() {
             <div className="space-y-4">
 
               <p className="text-lg">
-                期間中、12の公募プログラムの作品を見ていただき、応援したい団体に寄付をお願いします. 1票100円から投票及び寄付することができます.
-              </p>
-              <p className="mt-4 text-lg">
-                こちらの企画はクオドラディック・ファンディングというテクノロジーを使った分配の仕組みを使っています.
-              </p>
-              <p className="text-lg">
-                なお、本プロジェクトの資金の一部は、ブロックチェーンの非営利団体CardanoのCatalystというグラントプログラムより支援いただいています.
-              </p>
-              <hr className="my-6 border-gray-300" />
-              <div className="space-y-2">
-
-                <p className="text-base">
-                  Traditionally, subsidies have been decided by the decisions of panel judges, but with this participatory subsidy system, subsidies will be distributed equally in line with your donations (votes), so your will can be reflected in the subsidies.
-                </p>
-              </div>
-              <p className="text-base mt-2">
-                This project uses a technology-based distribution system called quadratic funding.
+                2/8-14で参加型寄付を行いました。総額87,188円が集まりました。最終的に算出されるアーティストコレクティブへの分配額は後ほどお伝えします。皆様ご協力ありがとうございました。
               </p>
               <p className="text-base mt-2">
-                In addition, the matching subsidy this time is also being funded by a grant program called Catalyst run by Cardano, a blockchain non-profit organization.
+                From February 8th to 14th, we conducted a participatory donation campaign and collected a total of 87,188 yen. The final distribution amount to the artist collectives will be announced later. Thank you all for your cooperation.
               </p>
             </div>
           </div>
