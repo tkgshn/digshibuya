@@ -159,11 +159,18 @@ export default function GrantDetails() {
                       {!data.team.some(
                         (team) => team.email === session?.user?.email
                       ) && (
-                        <Button
+                        {/* <Button
                           width="full"
                           className=""
                           disabled={!data.verified}
                           onClick={() => addToCart(data)}
+                        >
+                          カートに入れる
+                        </Button> */}
+                        <Button
+                          width="full"
+                          className="opacity-50 cursor-not-allowed"
+                          disabled={true}
                         >
                           カートに入れる
                         </Button>
