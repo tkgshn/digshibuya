@@ -161,11 +161,17 @@ export default function GrantDetails() {
                       ) && (
                         <Button
                           width="full"
-                          className=""
-                          disabled={!data.verified}
-                          onClick={() => addToCart(data)}
+                          // className=""
+                          // disabled={!data.verified}
+                          // onClick={() => addToCart(data)}
+                          className="bg-gray-400 text-white cursor-not-allowed"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                          }}
+                          disabled={true}
                         >
-                          カートに入れる
+                          {/* カートに入れる */}
+                          終了しました
                         </Button>
                       )}
                     </div>
