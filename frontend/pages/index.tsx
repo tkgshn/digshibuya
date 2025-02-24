@@ -138,6 +138,9 @@ export default function Home() {
           </div>
         </div>
 
+        {/* このしたに作っていく */}
+
+
 
         <section className="px-8 md:px-18 lg:px-36 mt-16">
           <h2 className="font-bold text-3xl md:text-5xl mt-12 lg:mt-0 mb-5">
@@ -340,7 +343,7 @@ export default function Home() {
                   <p className="text-sm text-gray-500 mb-4">支援されたプロジェクト</p>
                   <div className="relative" style={{ position: 'relative', paddingTop: '75%' }}>
                     <Image
-                      src="https://i.gyazo.com/2bc2cf2f91794332bf742afd6daf220d.png"
+                      src="https://i.gyazo.com/a582204a0b142c57d2dbbfa2c88a4f17.png"
                       alt="project distribution"
                       layout="fill"
                       objectFit="contain"
@@ -348,11 +351,11 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="flex-1 p-8 border-b md:border-b-0 md:border-r border-black">
-                  <p className="text-4xl font-bold">¥155,968</p>
+                  <p className="text-4xl font-bold">¥120,458</p>
                   <p className="text-sm text-gray-500 mb-4">ユニークな寄付</p>
                   <div className="relative" style={{ position: 'relative', paddingTop: '75%' }}>
                     <Image
-                      src="https://i.gyazo.com/9128d9af3c6ddb0b58df032697c47317.png"
+                      src="https://i.gyazo.com/99ddefa18f8fa71c672dae933c5a7c6a.png"
                       alt="donation breakdown"
                       layout="fill"
                       objectFit="contain"
@@ -360,11 +363,11 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="flex-1 p-8">
-                  <p className="text-4xl font-bold">¥1,120,555</p>
+                  <p className="text-4xl font-bold">¥1,032,511</p>
                   <p className="text-sm text-gray-500 mb-4">アートエコシステムへの支援総額</p>
                   <div className="relative" style={{ position: 'relative', paddingTop: '75%' }}>
                     <Image
-                      src="https://i.gyazo.com/ff8a33c94dbae4e737cc3f39a2a7d5fc.png"
+                      src="https://i.gyazo.com/ec81386b15cbe94a70a50124e72defbd.png"
                       alt="allocation distribution"
                       layout="fill"
                       objectFit="contain"
