@@ -129,16 +129,86 @@ export default function Home() {
             <div className="space-y-4">
 
               <p className="text-lg">
-                2/8-14で参加型寄付を行いました。総額87,188円が集まりました。最終的に算出されるアーティストコレクティブへの分配額は後ほどお伝えします。皆様ご協力ありがとうございました。
+                2025/2/8から14の1週間のあいだ、DIGSHIBUYAの公募プログラムに採択された12のアーティスト団体を対象に、参加型予算分配を行いました。支援の総額は120,458円に達し、各アーティスト団体に対する寄付者の数と額を元に、資金プールである100万円が分配されました。
               </p>
               <p className="text-base mt-2">
-                From February 8th to 14th, we conducted a participatory donation campaign and collected a total of 87,188 yen. The final distribution amount to the artist collectives will be announced later. Thank you all for your cooperation.
+                From February 8th to 14th, we conducted a Participatory Allocation campaign for 12 artist collectives selected for the DIGSHIBUYA open call program. The total support reached 120,458 yen, and the 1 million yen fund pool was distributed based on the number and amount of donations to each artist collective.
               </p>
             </div>
           </div>
         </div>
+        <div className="flex w-full justify-end mt-14 mb-28">
+          <Button
+            style="ghost"
+            onClick={() =>
+              window.open(
+                "https://docs.google.com/document/d/12quG1vfw-s27ZiMnEyn-NeSmj3cVdnbeJTWNtzjqThA/edit?usp=sharing",
+                "_blank"
+              )
+            }
+          >
+            参加型予算分配についてより詳しく / Learn more about Participatory Allocation{" "}
+            <ArrowTopRightIcon className="ml-2" />
+          </Button>
+        </div>
 
-        {/* このしたに作っていく */}
+        {/* ここからは実験が終わった後の結果を表示する */}
+        <section className="px-8 md:px-18 lg:px-36 py-16 bg-white">
+          <div className="max-w-6xl mx-auto border border-black rounded-lg overflow-hidden">
+            <div className="flex flex-col">
+              <div className="p-8 border-b border-black">
+                {/* 振り返り記事を公開したら、この要素を表示するう */}
+                {/* <button className="text-sm font-semibold text-gray-500 mb-2 flex items-center" onClick={() => window.open("https://note.com/tkgshn/n/nfa5142139665", "_blank")}>
+                  DIGSHIBUYA 参加型寄付プロジェクトの振り返り記事はこちら
+                  <ArrowTopRightIcon className="ml-2" />
+                </button> */}
+                <br></br>
+                <h2 className="font-bold text-3xl md:text-5xl leading-tight mb-4">
+                  {/* 日本初のQuadratic Fundingを使った資金分配 */}
+                  参加型予算を通したアーティスト集団への資金分配
+                </h2>
+              </div>
+              <div className="flex flex-col md:flex-row">
+                <div className="flex-1 p-8 border-b md:border-b-0 md:border-r border-black">
+                  <p className="text-4xl font-bold">12</p>
+                  <p className="text-sm text-gray-500 mb-4">支援されたプロジェクト</p>
+                  <div className="relative" style={{ position: 'relative', paddingTop: '75%' }}>
+                    <Image
+                      src="https://i.gyazo.com/a582204a0b142c57d2dbbfa2c88a4f17.png"
+                      alt="project distribution"
+                      layout="fill"
+                      objectFit="contain"
+                    />
+                  </div>
+                </div>
+                <div className="flex-1 p-8 border-b md:border-b-0 md:border-r border-black">
+                  <p className="text-4xl font-bold">¥120,458</p>
+                  <p className="text-sm text-gray-500 mb-4">ユニークな寄付</p>
+                  <div className="relative" style={{ position: 'relative', paddingTop: '75%' }}>
+                    <Image
+                      src="https://i.gyazo.com/99ddefa18f8fa71c672dae933c5a7c6a.png"
+                      alt="donation breakdown"
+                      layout="fill"
+                      objectFit="contain"
+                    />
+                  </div>
+                </div>
+                <div className="flex-1 p-8">
+                  <p className="text-4xl font-bold">¥1,032,511</p>
+                  <p className="text-sm text-gray-500 mb-4">アートエコシステムへの支援総額</p>
+                  <div className="relative" style={{ position: 'relative', paddingTop: '75%' }}>
+                    <Image
+                      src="https://i.gyazo.com/ec81386b15cbe94a70a50124e72defbd.png"
+                      alt="allocation distribution"
+                      layout="fill"
+                      objectFit="contain"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
 
 
 
@@ -318,64 +388,6 @@ export default function Home() {
               Quadratic Fundingについてより詳しく / Learn more about Quadratic Funding{" "}
               <ArrowTopRightIcon className="ml-2" />
             </Button>
-          </div>
-        </section>
-
-        {/* ここからは実験が終わった後の結果を表示する */}
-        <section className="px-8 md:px-18 lg:px-36 py-16 bg-white">
-          <div className="max-w-6xl mx-auto border border-black rounded-lg overflow-hidden">
-            <div className="flex flex-col">
-              <div className="p-8 border-b border-black">
-                {/* 振り返り記事を公開したら、この要素を表示するう */}
-                {/* <button className="text-sm font-semibold text-gray-500 mb-2 flex items-center" onClick={() => window.open("https://note.com/tkgshn/n/nfa5142139665", "_blank")}>
-                  DIGSHIBUYA 参加型寄付プロジェクトの振り返り記事はこちら
-                  <ArrowTopRightIcon className="ml-2" />
-                </button> */}
-                <br></br>
-                <h2 className="font-bold text-3xl md:text-5xl leading-tight mb-4">
-                  {/* 日本初のQuadratic Fundingを使った資金分配 */}
-                  参加型予算を通したアーティスト集団への資金分配
-                </h2>
-              </div>
-              <div className="flex flex-col md:flex-row">
-                <div className="flex-1 p-8 border-b md:border-b-0 md:border-r border-black">
-                  <p className="text-4xl font-bold">12</p>
-                  <p className="text-sm text-gray-500 mb-4">支援されたプロジェクト</p>
-                  <div className="relative" style={{ position: 'relative', paddingTop: '75%' }}>
-                    <Image
-                      src="https://i.gyazo.com/a582204a0b142c57d2dbbfa2c88a4f17.png"
-                      alt="project distribution"
-                      layout="fill"
-                      objectFit="contain"
-                    />
-                  </div>
-                </div>
-                <div className="flex-1 p-8 border-b md:border-b-0 md:border-r border-black">
-                  <p className="text-4xl font-bold">¥120,458</p>
-                  <p className="text-sm text-gray-500 mb-4">ユニークな寄付</p>
-                  <div className="relative" style={{ position: 'relative', paddingTop: '75%' }}>
-                    <Image
-                      src="https://i.gyazo.com/99ddefa18f8fa71c672dae933c5a7c6a.png"
-                      alt="donation breakdown"
-                      layout="fill"
-                      objectFit="contain"
-                    />
-                  </div>
-                </div>
-                <div className="flex-1 p-8">
-                  <p className="text-4xl font-bold">¥1,032,511</p>
-                  <p className="text-sm text-gray-500 mb-4">アートエコシステムへの支援総額</p>
-                  <div className="relative" style={{ position: 'relative', paddingTop: '75%' }}>
-                    <Image
-                      src="https://i.gyazo.com/ec81386b15cbe94a70a50124e72defbd.png"
-                      alt="allocation distribution"
-                      layout="fill"
-                      objectFit="contain"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
         </section>
 
