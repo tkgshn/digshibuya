@@ -7,6 +7,12 @@ on:
   # 手動で実行できるようにする
   workflow_dispatch:
 
+# GITHUB_TOKEN のパーミッション設定
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 # 同時に実行されるジョブをグループ化する
 jobs:
   build:
@@ -28,17 +34,21 @@ jobs:
       - name: Build
         run: cd frontend && npm run build
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
+      # 明示的に upload-artifact を追加
+      - name: Archive build artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: build-artifacts
+          path: frontend/out
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v2
         with:
           path: frontend/out
 
   # デプロイメントジョブ
   deploy:
     needs: build
-    permissions:
-      pages: write
-      id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
