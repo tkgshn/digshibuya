@@ -2,13 +2,11 @@ import React, { useState, useEffect } from "react";
 import TagsInput from "react-tagsinput";
 import 'react-tagsinput/react-tagsinput.css'; // 必要に応じてCSSをインポート
 import { loadContributions } from "../../utils/staticData";
+import { ContributionResponse } from "../../types/contribution";
 
-interface Contribution {
-    id: string;
-    grantId: string;
-    amount: number;
-    userId?: string;
+interface Contribution extends Omit<ContributionResponse, 'createdAt' | 'updatedAt'> {
     createdAt?: string;
+    updatedAt?: string;
 }
 
 interface Grant {
@@ -37,7 +35,12 @@ const GrantSimulator: React.FC = () => {
         const loadRealGrantData = async () => {
             const contributions = await loadContributions();
             if (contributions && contributions.length > 0) {
-                setRealData(contributions);
+                const formattedContributions = contributions.map(c => ({
+                    ...c,
+                    createdAt: c.createdAt instanceof Date ? c.createdAt.toISOString() : undefined,
+                    updatedAt: c.updatedAt instanceof Date ? c.updatedAt.toISOString() : undefined
+                }));
+                setRealData(formattedContributions);
                 setLoadedRealData(true);
             }
         };
