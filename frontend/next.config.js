@@ -44,6 +44,7 @@ const nextConfig = {
     ],
     unoptimized: true, // Add this for static export
   },
+  output: 'export', // Essential for static site generation
   trailingSlash: true, // Add this for better static routing
   // Configure static export
   exportPathMap: async function() {
