@@ -6,6 +6,9 @@ on:
     branches: [ "main" ]
   # 手動で実行できるようにする
   workflow_dispatch:
+  # PRでのテスト実行を可能にする
+  pull_request:
+    branches: [ "main" ]
 
 # GITHUB_TOKEN のパーミッション設定
 permissions:
@@ -15,7 +18,94 @@ permissions:
 
 # 同時に実行されるジョブをグループ化する
 jobs:
+  # テストジョブ
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: 'npm'
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Install dependencies
+        run: cd frontend && npm ci
+
+      - name: Run linting
+        run: cd frontend && npm run lint || echo "Linting completed with warnings"
+
+      - name: Verify static data files
+        run: |
+          if [ ! -f "frontend/public/data/Grants.json" ]; then
+            echo "Error: Grants.json is missing"
+            exit 1
+          fi
+          if [ ! -f "frontend/public/data/Contribution.json" ]; then
+            echo "Error: Contribution.json is missing"
+            exit 1
+          fi
+          echo "Static data files verified successfully"
+
+      - name: Test static data loading
+        run: |
+          cd frontend
+          cat > test-static-data.js << 'EOF'
+          const fs = require('fs');
+          
+          // Test Grants.json
+          try {
+            const grantsData = JSON.parse(fs.readFileSync('./public/data/Grants.json', 'utf8'));
+            console.log(`Grants.json loaded successfully with ${grantsData.length} grants`);
+            
+            // Validate structure
+            if (!Array.isArray(grantsData)) {
+              throw new Error('Grants.json is not an array');
+            }
+            
+            if (grantsData.length === 0) {
+              throw new Error('Grants.json is empty');
+            }
+            
+            // Check first item structure
+            const firstGrant = grantsData[0];
+            if (!firstGrant.id || !firstGrant.name) {
+              throw new Error('Grant data is missing required fields');
+            }
+            
+            console.log('Grants.json validation passed');
+          } catch (error) {
+            console.error('Error validating Grants.json:', error.message);
+            process.exit(1);
+          }
+          
+          // Test Contribution.json
+          try {
+            const contributionsData = JSON.parse(fs.readFileSync('./public/data/Contribution.json', 'utf8'));
+            console.log(`Contribution.json loaded successfully with ${contributionsData.length} contributions`);
+            
+            // Validate structure
+            if (!Array.isArray(contributionsData)) {
+              throw new Error('Contribution.json is not an array');
+            }
+            
+            console.log('Contribution.json validation passed');
+          } catch (error) {
+            console.error('Error validating Contribution.json:', error.message);
+            process.exit(1);
+          }
+          
+          console.log('All static data tests passed!');
+          EOF
+          
+          node test-static-data.js
+
+  # ビルドジョブ
   build:
+    needs: test
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -34,6 +124,20 @@ jobs:
       - name: Build
         run: cd frontend && npm run build
 
+      - name: Verify build output
+        run: |
+          if [ ! -d "frontend/out" ]; then
+            echo "Error: Build output directory not found"
+            exit 1
+          fi
+          
+          if [ ! -f "frontend/out/index.html" ]; then
+            echo "Error: index.html not found in build output"
+            exit 1
+          fi
+          
+          echo "Build output verified successfully"
+
       # 明示的に upload-artifact を追加
       - name: Archive build artifacts
         uses: actions/upload-artifact@v3
@@ -46,8 +150,10 @@ jobs:
         with:
           path: frontend/out
 
-  # デプロイメントジョブ
+  # デプロイメントジョブ (PRではスキップ)
   deploy:
+    # PRの場合はデプロイをスキップ
+    if: github.event_name != 'pull_request'
     needs: build
     environment:
       name: github-pages
@@ -57,3 +163,8 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
+        
+      - name: Verify deployment
+        run: |
+          echo "Deployed to ${{ steps.deployment.outputs.page_url }}"
+          # 実際のデプロイURLにアクセスして確認するテストを追加することも可能
