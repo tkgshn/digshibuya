@@ -100,11 +100,9 @@ export default function GrantsCheckout() {
       for (const roundId of Object.keys(estimatedMatchingAmounts)) {
         const round = estimatedMatchingAmounts[roundId]
 
-        // ラウンドのマッチングプール金額をとってきて、推定値がそれを超えている場合はOverflow Trueにする。
-        // UIでOverflowしているので実際の金額とは異なる旨を注意書きする。
-        const { data: roundData } = await instance.get(`/pools/${roundId}`)
+        const mockAmountRaised = 50000; // Mock value for static site
         setOverflowMatchingPool(
-          round.totalFundsInPool > roundData.amountRaised + 10000
+          round.totalFundsInPool > mockAmountRaised + 10000
         )
 
         for (const grantId of Object.keys(round.grants)) {
@@ -154,8 +152,8 @@ export default function GrantsCheckout() {
             id: grant.id,
             amount: grant.amount,
           })),
-        },
-        { withCredentials: true }
+          withCredentials: true // Include as part of the data object for static site
+        }
       )
       setCheckoutData(response.data)
       sessionStorage.setItem(

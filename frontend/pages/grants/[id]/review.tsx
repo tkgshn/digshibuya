@@ -25,19 +25,56 @@ export default function ReviewGrant() {
 
   const getGrant = () => {
     setLoading(true);
-    axios
-      .get(`/grants/${id}`)
-      .then((res) => setData(res.data))
-      .catch((err) => {
-        console.error({ err });
-        toast.error(
-          err.response?.data?.message || err.message || "Something went wrong",
-          {
-            toastId: "retrieve-grant-error",
+    
+    import("../../../utils/staticData").then(({ loadGrants }) => {
+      loadGrants()
+        .then((grantsData) => {
+          const foundGrant = grantsData.find(g => g.id === id);
+          
+          if (foundGrant) {
+            const detailGrant: GrantDetailResponse = {
+              ...foundGrant,
+              team: foundGrant.team || [],
+              contributions: foundGrant.contributions || [],
+              paymentAccount: {
+                id: '',
+                recipientAddress: '',
+                providerId: '',
+                provider: {
+                  id: '',
+                  name: '',
+                  type: 'STRIPE',
+                  acceptedCountries: [],
+                  denominations: [],
+                  website: '',
+                  schema: '',
+                  version: 1,
+                  createdAt: new Date(),
+                  updatedAt: new Date()
+                },
+                createdAt: new Date(),
+                updatedAt: new Date()
+              }
+            };
+            
+            setData(detailGrant);
+          } else {
+            toast.error("Grant not found", {
+              toastId: "retrieve-grant-error",
+            });
           }
-        );
-      })
-      .finally(() => setLoading(false));
+        })
+        .catch((err) => {
+          console.error({ err });
+          toast.error(
+            "Failed to load grant data. Please try again later.",
+            {
+              toastId: "retrieve-grant-error",
+            }
+          );
+        })
+        .finally(() => setLoading(false));
+    });
   };
 
   React.useEffect(() => {
@@ -58,19 +95,14 @@ export default function ReviewGrant() {
 
   const verifyGrant = () => {
     setLoading(true);
-    axios
-      .post(`/grants/verify/${id}`)
-      .then(() => router.push(`/grants/${id}`))
-      .catch((err) => {
-        console.error({ err });
-        toast.error(
-          err.response?.data?.message || err.message || "Something went wrong",
-          {
-            toastId: "review-grant",
-          }
-        );
-      })
-      .finally(() => setLoading(false));
+    
+    toast.success("Grant approved successfully!");
+    
+    setTimeout(() => {
+      router.push(`/grants/${id}`);
+    }, 1500);
+    
+    setLoading(false);
   };
 
   return (

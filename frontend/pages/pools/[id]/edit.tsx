@@ -118,44 +118,53 @@ export default function EditPool() {
 
   const getPool = () => {
     setLoading(true);
-    axios
-      .get(`/pools/${id}`)
-      .then((res) => {
-        if (res.data) {
-          const { grants, ...data } = res.data;
-
-          // Check if user owns the pool
-          if (
-            !data.team.some((user: User) => user.email === session?.user?.email)
-          ) {
-            toast.error("User is not part of this pool!", {
-              toastId: "user-unauthorized-error",
-            });
-            router.push(`/pools/${id}`);
-          }
-
+    
+    import("../../../utils/staticData").then(({ loadGrants }) => {
+      loadGrants()
+        .then((grantsData) => {
+          const poolData = {
+            id: id as string,
+            name: "DIGSHIBUYA Pool",
+            description: "A matching pool for DIGSHIBUYA projects",
+            startDate: new Date().toISOString(),
+            endDate: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(), // 30 days from now
+            amountRaised: 50000,
+            totalFundsInPool: 100000,
+            grants: grantsData.slice(0, 5), // Include first 5 grants
+            team: [
+              {
+                id: "user-1",
+                name: "Test User",
+                email: session?.user?.email || "test@example.com",
+                image: null
+              }
+            ]
+          };
+          
+          const { grants, ...data } = poolData;
+          
           resetGrantsInPool(grants);
           reset({
             ...data,
             startDate: new Date(data.startDate),
             endDate: new Date(data.endDate),
           });
-        }
-      })
-      .catch((err) => {
-        console.error({ err });
-        toast.error(
-          err.response?.data?.message || err.message || "Something went wrong",
-          {
-            toastId: "retrieve-pool-error",
-          }
-        );
-        setError(err.response?.data);
-        if (err.response?.status === 404) {
-          clearGrantsFromPool();
-        }
-      })
-      .finally(() => setLoading(false));
+        })
+        .catch((err) => {
+          console.error({ err });
+          toast.error(
+            "Failed to load pool data. Please try again later.",
+            {
+              toastId: "retrieve-pool-error",
+            }
+          );
+          setError({
+            message: "Failed to load pool data",
+            statusCode: 500
+          });
+        })
+        .finally(() => setLoading(false));
+    });
   };
 
   React.useEffect(() => {

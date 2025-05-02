@@ -33,30 +33,62 @@ export default function Grants() {
 
   const getGrants = () => {
     setLoading(true)
-    axios
-      .get("/grants", {
-        params: {
-          sort,
-          filter,
-          search,
-        },
-      })
-      .then((res) => {
-        const grants = res.data
-        setData(
-          data.length > 0 ? grants : grants.sort(() => Math.random() - 0.5)
-        )
-      })
-      .catch((err) => {
-        console.error({ err })
-        toast.error(
-          err.response?.data?.message || err.message || "Something went wrong",
-          {
-            toastId: "retrieve-grants-error",
+    
+    import("../../utils/staticData").then(({ loadGrants }) => {
+      loadGrants()
+        .then((grantsData) => {
+          let filteredData = [...grantsData];
+          
+          if (search) {
+            const searchLower = search.toLowerCase();
+            filteredData = filteredData.filter(grant => 
+              grant.name.toLowerCase().includes(searchLower) || 
+              (grant.description && grant.description.toLowerCase().includes(searchLower))
+            );
           }
-        )
-      })
-      .finally(() => setLoading(false))
+          
+          if (filter) {
+            if (filter === "funded") {
+              filteredData = filteredData.filter(grant => grant.amountRaised > 0);
+            } else if (filter === "underfunded") {
+              filteredData = filteredData.filter(grant => grant.amountRaised === 0);
+            }
+          }
+          
+          if (sort) {
+            switch(sort) {
+              case "newest":
+                filteredData.sort((a, b) => b.id.localeCompare(a.id));
+                break;
+              case "oldest":
+                filteredData.sort((a, b) => a.id.localeCompare(b.id));
+                break;
+              case "most_funded":
+                filteredData.sort((a, b) => (b.amountRaised || 0) - (a.amountRaised || 0));
+                break;
+              case "most_backed":
+                filteredData.sort((a, b) => (b.contributions?.length || 0) - (a.contributions?.length || 0));
+                break;
+            }
+          }
+          
+          if (data.length === 0 && !sort) {
+            filteredData.sort(() => Math.random() - 0.5);
+          }
+          
+          setData(filteredData);
+        })
+        .catch((err) => {
+          console.error({ err })
+          toast.error(
+            "Failed to load grants data. Please try again later.",
+            {
+              toastId: "retrieve-grants-error",
+            }
+          )
+        })
+        .finally(() => setLoading(false))
+    });
   }
 
   React.useEffect(() => {

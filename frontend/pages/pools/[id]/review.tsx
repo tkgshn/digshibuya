@@ -28,39 +28,106 @@ export default function ReviewPool() {
 
   const getPool = () => {
     setLoading(true);
-    axios
-      .get(`/pools/${id}`)
-      .then((res) => setData(res.data))
-      .catch((err) => {
-        console.error({ err });
-        toast.error(
-          err.response?.data?.message || err.message || "Something went wrong",
-          {
-            toastId: "retrieve-pool-error",
-          }
-        );
-      })
-      .finally(() => setLoading(false));
+    
+    import("../../../utils/staticData").then(({ loadGrants }) => {
+      loadGrants()
+        .then((grantsData) => {
+          const poolData: PoolDetailResponse = {
+            id: id as string,
+            name: "DIGSHIBUYA Pool",
+            description: "A matching pool for DIGSHIBUYA projects",
+            image: null,
+            paid: false,
+            startDate: new Date(),
+            endDate: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000), // 30 days from now
+            createdAt: new Date(),
+            updatedAt: new Date(),
+            amountRaised: 50000,
+            contributors: 25,
+            verified: false, // Set to false for review page
+            grants: grantsData.slice(0, 5), // Include first 5 grants
+            team: [
+              {
+                id: session?.user?.id || "user-1",
+                name: session?.user?.name || "Test User",
+                email: session?.user?.email || "test@example.com",
+                image: session?.user?.image || "",
+                emailVerified: null,
+                bio: null,
+                twitter: null,
+                role: "User"
+              }
+            ]
+          };
+          
+          setData(poolData);
+        })
+        .catch((err) => {
+          console.error({ err });
+          toast.error(
+            "Failed to load pool data. Please try again later.",
+            {
+              toastId: "retrieve-pool-error",
+            }
+          );
+        })
+        .finally(() => setLoading(false));
+    });
   };
 
   const getGrant = (grantId: string) => {
     setLoading(true);
-    axios
-      .get(`/grants/${grantId}`)
-      .then((res) => {
-        setGrant(res.data);
-        setIsOpen(true);
-      })
-      .catch((err) => {
-        console.error({ err });
-        toast.error(
-          err.response?.data?.message || err.message || "Something went wrong",
-          {
-            toastId: "retrieve-grant-error",
+    
+    import("../../../utils/staticData").then(({ loadGrants }) => {
+      loadGrants()
+        .then((grantsData) => {
+          const foundGrant = grantsData.find(g => g.id === grantId);
+          
+          if (foundGrant) {
+            const detailGrant: GrantDetailResponse = {
+              ...foundGrant,
+              team: foundGrant.team || [],
+              contributions: foundGrant.contributions || [],
+              paymentAccount: {
+                id: '',
+                recipientAddress: '',
+                providerId: '',
+                provider: {
+                  id: '',
+                  name: '',
+                  type: 'STRIPE',
+                  acceptedCountries: [],
+                  denominations: [],
+                  website: '',
+                  schema: '',
+                  version: 1,
+                  createdAt: new Date(),
+                  updatedAt: new Date()
+                },
+                createdAt: new Date(),
+                updatedAt: new Date()
+              }
+            };
+            
+            setGrant(detailGrant);
+            setIsOpen(true);
+          } else {
+            toast.error("Grant not found", {
+              toastId: "retrieve-grant-error",
+            });
           }
-        );
-      })
-      .finally(() => setLoading(false));
+        })
+        .catch((err) => {
+          console.error({ err });
+          toast.error(
+            "Failed to load grant data. Please try again later.",
+            {
+              toastId: "retrieve-grant-error",
+            }
+          );
+        })
+        .finally(() => setLoading(false));
+    });
   };
 
   React.useEffect(() => {
@@ -77,19 +144,14 @@ export default function ReviewPool() {
 
   const verifyPool = () => {
     setLoading(true);
-    axios
-      .post(`/pools/verify/${id}`)
-      .then(() => router.push(`/pools/${id}`))
-      .catch((err) => {
-        console.error({ err });
-        toast.error(
-          err.response?.data?.message || err.message || "Something went wrong",
-          {
-            toastId: "review-pool",
-          }
-        );
-      })
-      .finally(() => setLoading(false));
+    
+    toast.success("Pool approved successfully!");
+    
+    setTimeout(() => {
+      router.push(`/pools/${id}`);
+    }, 1500);
+    
+    setLoading(false);
   };
 
   return (

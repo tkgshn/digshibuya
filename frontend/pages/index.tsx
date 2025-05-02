@@ -48,19 +48,23 @@ export default function Home() {
 
   const getGrants = () => {
     setLoading(true)
-    axios
-      .get("/grants")
-      .then((res) => setData(res.data))
-      .catch((err) => {
-        console.error({ err })
-        toast.error(
-          err.response?.data?.message || err.message || "Something went wrong",
-          {
-            toastId: "retrieve-grants-error",
-          }
-        )
-      })
-      .finally(() => setLoading(false))
+    
+    import("../utils/staticData").then(({ loadGrants }) => {
+      loadGrants()
+        .then((grantsData) => {
+          setData(grantsData);
+        })
+        .catch((err) => {
+          console.error({ err });
+          toast.error(
+            "Failed to load grants data. Please try again later.",
+            {
+              toastId: "retrieve-grants-error",
+            }
+          );
+        })
+        .finally(() => setLoading(false));
+    });
   }
 
   React.useEffect(() => {
@@ -157,11 +161,11 @@ export default function Home() {
           <div className="max-w-6xl mx-auto border border-black rounded-lg overflow-hidden">
             <div className="flex flex-col">
               <div className="p-8 border-b border-black">
-                {/* 振り返り記事を公開したら、この要素を表示するう */}
-                {/* <button className="text-sm font-semibold text-gray-500 mb-2 flex items-center" onClick={() => window.open("https://note.com/tkgshn/n/nfa5142139665", "_blank")}>
+                {/* 振り返り記事へのリンク */}
+                <button className="text-sm font-semibold text-gray-500 mb-2 flex items-center" onClick={() => window.open("https://note.com/tkgshn/n/na33eddfb0798", "_blank")}>
                   DIGSHIBUYA 参加型寄付プロジェクトの振り返り記事はこちら
                   <ArrowTopRightIcon className="ml-2" />
-                </button> */}
+                </button>
                 <br></br>
                 <h2 className="font-bold text-3xl md:text-5xl leading-tight mb-4">
                   {/* 日本初のQuadratic Fundingを使った資金分配 */}
@@ -311,6 +315,19 @@ export default function Home() {
                     <strong>Distribution through Quadratic Funding</strong><br />
                     Using the Quadratic Funding mechanism for participatory budget calculations, art collectives that have broad community support can receive more grant funding.
                   </p>
+                  <Button
+                    style="ghost"
+                    onClick={() =>
+                      window.open(
+                        "https://tkgshn.github.io/DIGSHIBUYA_QF_COCM/",
+                        "_blank"
+                      )
+                    }
+                    className="mt-4"
+                  >
+                    QF/COCM分析を見る / View QF/COCM Analysis{" "}
+                    <ArrowTopRightIcon className="ml-2" />
+                  </Button>
                 </div>
               </div>
               <div className="flex flex-col md:flex-row h-full w-full px-8 py-14 md:items-center rounded-2xl bg-white border border-[#D9A596] gap-6">

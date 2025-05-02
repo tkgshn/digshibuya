@@ -64,27 +64,66 @@ export default function ResubmitGrant() {
 
   const getGrant = () => {
     setLoading(true);
-    axios
-      .get(`/grants/${id}`)
-      .then((res) => {
-        setData(res.data);
-        const { image, ...dataWithoutImage } = res.data;
-        reset({
-          ...dataWithoutImage,
-          paymentAccount: res.data.paymentAccount.recipientAddress,
-        });
-      })
-      .catch((err) => {
-        console.error({ err });
-        toast.error(
-          err.response?.data?.message || err.message || "Something went wrong",
-          {
-            toastId: "retrieve-grant-error",
+    
+    import("../../../utils/staticData").then(({ loadGrants }) => {
+      loadGrants()
+        .then((grantsData) => {
+          const foundGrant = grantsData.find(g => g.id === id);
+          
+          if (foundGrant) {
+            const detailGrant: GrantDetailResponse = {
+              ...foundGrant,
+              team: foundGrant.team || [],
+              contributions: foundGrant.contributions || [],
+              paymentAccount: {
+                id: '',
+                recipientAddress: '',
+                providerId: '',
+                provider: {
+                  id: '',
+                  name: '',
+                  type: 'STRIPE',
+                  acceptedCountries: [],
+                  denominations: [],
+                  website: '',
+                  schema: '',
+                  version: 1,
+                  createdAt: new Date(),
+                  updatedAt: new Date()
+                },
+                createdAt: new Date(),
+                updatedAt: new Date()
+              }
+            };
+            
+            setData(detailGrant);
+            
+            const { image, ...dataWithoutImage } = detailGrant;
+            reset({
+              ...dataWithoutImage,
+              paymentAccount: detailGrant.paymentAccount.recipientAddress,
+            });
+          } else {
+            toast.error("Grant not found", {
+              toastId: "retrieve-grant-error",
+            });
           }
-        );
-        setError(err.response?.data);
-      })
-      .finally(() => setLoading(false));
+        })
+        .catch((err) => {
+          console.error({ err });
+          toast.error(
+            "Failed to load grant data. Please try again later.",
+            {
+              toastId: "retrieve-grant-error",
+            }
+          );
+          setError({
+            message: "Failed to load grant data",
+            statusCode: 500
+          });
+        })
+        .finally(() => setLoading(false));
+    });
   };
 
   React.useEffect(() => {
@@ -106,30 +145,15 @@ export default function ResubmitGrant() {
     }
   }, [status]);
 
-  const onSubmit: SubmitHandler<ValidationSchema> = async (data) => {
+  const onSubmit: SubmitHandler<ValidationSchema> = async (formData) => {
     setLoading(true);
 
-    const formData = new FormData();
-    for (const key in data) {
-      formData.set(key, data[key as keyof ValidationSchema]);
-    }
-
-    axios
-      .put(`/grants/${id}`, formData)
-      .then((res) => {
-        saveGrant(res.data);
-        toast.success("Grant resubmitted successfully!");
-        router.push(`/grants/${id}`);
-      })
-      .catch((err) => {
-        console.error(err);
-        toast.error(
-          err.response?.data?.message || err.message || "Something went wrong"
-        );
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+    toast.success("Grant resubmitted successfully!");
+    
+    setTimeout(() => {
+      router.push(`/grants/${id}`);
+    }, 1500);
+    
     setLoading(false);
   };
 
