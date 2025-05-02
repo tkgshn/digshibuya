@@ -75,10 +75,10 @@ const GrantCard = ({
               />
               <p className="font-bold text-lg mb-3">
                 {" "}
-                {grant.amountRaised.toLocaleString("ja-JP", {
+                {(grant.amountRaised || 0).toLocaleString("ja-JP", {
                   maximumFractionDigits: 0,
                 })}円{" "}
-                / {((grant.amountRaised / grant.fundingGoal) * 100).toFixed(0)}%
+                / {(((grant.amountRaised || 0) / (grant.fundingGoal || 1)) * 100).toFixed(0)}%
                 達成済み
               </p>
             </>

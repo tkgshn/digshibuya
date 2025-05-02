@@ -9,10 +9,12 @@ interface IFundingBarProps {
 }
 
 const FundingBar = ({ value, max, className }: IFundingBarProps) => {
+  const safeValue = value || 0;
+  const safeMax = max || 1;
   const [progress, setProgress] = React.useState(0);
 
   React.useEffect(() => {
-    const timer = setTimeout(() => setProgress(value), 500);
+    const timer = setTimeout(() => setProgress(safeValue), 500);
     return () => clearTimeout(timer);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -28,14 +30,14 @@ const FundingBar = ({ value, max, className }: IFundingBarProps) => {
         // https://gist.github.com/domske/b66047671c780a238b51c51ffde8d3a0
         transform: "translateZ(0)",
       }}
-      value={value > max ? max : value}
-      max={max}
+      value={safeValue > safeMax ? safeMax : safeValue}
+      max={safeMax}
     >
       <Progress.Indicator
         className="bg-sg-success w-full h-full transition-transform duration-[660ms] ease-[cubic-bezier(0.65, 0, 0.35, 1)] rounded-full border-r border-sg-900"
         style={{
           transform: `translateX(-${
-            100 - (Math.min(progress, max) / max) * 100
+            100 - (Math.min(progress, safeMax) / safeMax) * 100
           }%)`,
         }}
       />
