@@ -42,16 +42,23 @@ const nextConfig = {
         hostname: "i.gyazo.com",
       },
     ],
-    unoptimized: true, // Add this for static export
+    unoptimized: true, // For static export
   },
-  output: 'export', // Essential for static site generation
-  trailingSlash: true, // Add this for better static routing
-  // Configure static export
+  output: 'export', // For static site generation
+  trailingSlash: true, // For better static routing
+  
+  distDir: 'out',
+  
+  // Configure static export paths
   exportPathMap: async function() {
     return {
       '/': { page: '/' },
       '/404': { page: '/404' },
-      '/grants': { page: '/grants' }
+      '/grants': { page: '/grants' },
+      '/grants/index': { page: '/grants' },
+      '/pools': { page: '/pools' },
+      '/pools/index': { page: '/pools' },
+      '/analysis': { page: '/analysis' }
     };
   }
 }
