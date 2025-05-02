@@ -1,18 +1,29 @@
-import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next"
-import { getProviders, signIn } from "next-auth/react"
-import { getServerSession } from "next-auth/next"
-import { authOptions } from "./api/auth/[...nextauth]"
+import { signIn } from "next-auth/react"
 import Head from "next/head"
-import React from "react"
+import React, { useEffect, useState } from "react"
 import MainLayout from "../layouts/MainLayout"
 import Button from "../components/Button"
 import { useInviteStore } from "../utils/store"
 import Link from "next/link"
 
-export default function SignIn({
-  providers,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) {
+const mockProviders = [
+  {
+    id: "google",
+    name: "Google",
+  },
+  {
+    id: "github",
+    name: "GitHub",
+  }
+];
+
+export default function SignIn() {
   const { inviteCode } = useInviteStore()
+  const [providers, setProviders] = useState(mockProviders);
+
+  useEffect(() => {
+    console.log("Static site: Using mock authentication providers");
+  }, []);
 
   return (
     <div>
@@ -29,14 +40,15 @@ export default function SignIn({
         <div className="flex flex-col items-center justify-between h-full rounded-lg bg-white p-8 shadow-card">
           <h1 className="font-bold text-xl mb-10">ログイン / アカウント作成</h1>
           <div className="flex flex-col items-center justify-center gap-y-5">
-            {Object.values(providers).map((provider) => (
+            {providers.map((provider) => (
               <Button
                 key={provider.name}
-                onClick={() =>
-                  signIn(provider.id, {
-                    callbackUrl: inviteCode ? `/invite` : undefined,
-                  })
-                }
+                onClick={() => {
+                  alert("この機能は静的サイトでは利用できません。実際のサイトでお試しください。");
+                  // signIn(provider.id, {
+                  //   callbackUrl: inviteCode ? `/invite` : undefined,
+                  // })
+                }}
                 className="px-16 py-3 text-xl"
                 width="full"
               >
@@ -65,24 +77,4 @@ export default function SignIn({
       </MainLayout>
     </div>
   )
-}
-
-export async function getServerSideProps(context: GetServerSidePropsContext) {
-  const session = await getServerSession(context.req, context.res, authOptions)
-
-  // If the user is already logged in, redirect.
-  // Note: Make sure not to redirect to the same page
-  // To avoid an infinite loop!
-  if (session) {
-    if (context.query.redirect) {
-      return { redirect: { destination: context.query.redirect } }
-    }
-    return { redirect: { destination: "/grants" } }
-  }
-
-  const providers = await getProviders()
-
-  return {
-    props: { providers: providers ?? [] },
-  }
 }
