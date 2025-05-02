@@ -44,23 +44,7 @@ const nextConfig = {
     ],
     unoptimized: true, // For static export
   },
-  output: 'export', // For static site generation
-  trailingSlash: true, // For better static routing
-  
-  distDir: 'out',
-  
-  // Configure static export paths
-  exportPathMap: async function() {
-    return {
-      '/': { page: '/' },
-      '/404': { page: '/404' },
-      '/grants': { page: '/grants' },
-      '/grants/index': { page: '/grants' },
-      '/pools': { page: '/pools' },
-      '/pools/index': { page: '/pools' },
-      '/analysis': { page: '/analysis' }
-    };
-  }
+  trailingSlash: true
 }
 
 module.exports = nextConfig
