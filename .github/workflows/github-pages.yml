@@ -122,7 +122,18 @@ jobs:
         run: cd frontend && npm ci
 
       - name: Build
-        run: cd frontend && npm run build
+        run: |
+          cd frontend
+          # Debug: List public/data directory contents
+          echo "Checking static data files before build:"
+          ls -la public/data/
+          
+          # Run the build
+          npm run build
+          
+          # Debug: List output directory
+          echo "Checking build output:"
+          ls -la out/ || echo "out directory not found"
 
       - name: Verify build output
         run: |
@@ -134,6 +145,14 @@ jobs:
           if [ ! -f "frontend/out/index.html" ]; then
             echo "Error: index.html not found in build output"
             exit 1
+          fi
+          
+          # Verify data files were copied to the output
+          if [ ! -d "frontend/out/data" ]; then
+            echo "Error: data directory not found in build output"
+            mkdir -p frontend/out/data
+            cp frontend/public/data/* frontend/out/data/
+            echo "Manually copied data files to build output"
           fi
           
           echo "Build output verified successfully"
