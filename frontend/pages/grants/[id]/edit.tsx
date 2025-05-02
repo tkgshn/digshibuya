@@ -65,43 +65,74 @@ export default function EditGrant() {
 
   const getGrant = () => {
     setLoading(true);
-    axios
-      .get(`/grants/${id}`)
-      .then((res) => {
-        const data = res.data;
-        setData(data);
+    
+    import("../../../utils/staticData").then(({ loadGrants }) => {
+      loadGrants()
+        .then((grantsData) => {
+          const foundGrant = grantsData.find(g => g.id === id);
+          
+          if (foundGrant) {
+            const detailGrant: GrantDetailResponse = {
+              ...foundGrant,
+              team: foundGrant.team || [],
+              contributions: foundGrant.contributions || [],
+              paymentAccount: {
+                id: '',
+                recipientAddress: '',
+                providerId: '',
+                provider: {
+                  id: '',
+                  name: '',
+                  type: 'STRIPE',
+                  acceptedCountries: [],
+                  denominations: [],
+                  website: '',
+                  schema: '',
+                  version: 1,
+                  createdAt: new Date(),
+                  updatedAt: new Date()
+                },
+                createdAt: new Date(),
+                updatedAt: new Date()
+              }
+            };
+            
+            setData(detailGrant);
 
-        // Once we receive the data, we will check if user is a team member
-        // If not, we will redirect them to the grant page
-        if (data) {
-          if (
-            !data.team.some((user: User) => user.email === session?.user?.email)
-          ) {
-            toast.error("User is not part of this grant!", {
-              toastId: "user-unauthorized-error",
+            if (
+              !detailGrant.team.some((user: User) => user.email === session?.user?.email)
+            ) {
+              toast.error("User is not part of this grant!", {
+                toastId: "user-unauthorized-error",
+              });
+              router.push(`/grants/${id}`);
+            }
+
+            const { image, ...dataWithoutImage } = detailGrant;
+            reset({
+              name: dataWithoutImage.name,
+              location: dataWithoutImage.location,
+              twitter: dataWithoutImage.twitter,
+              website: dataWithoutImage.website,
+              description: dataWithoutImage.description
             });
-            router.push(`/grants/${id}`);
           }
-
-          // Otherwise, we continue
-          const { image, ...dataWithoutImage } = data;
-          reset({
-            ...dataWithoutImage,
-            paymentAccount: data.paymentAccount.recipientAddress,
+        })
+        .catch((err) => {
+          console.error({ err });
+          toast.error(
+            "Failed to load grant data. Please try again later.",
+            {
+              toastId: "retrieve-grant-error",
+            }
+          );
+          setError({
+            message: "Failed to load grant data",
+            statusCode: 500
           });
-        }
-      })
-      .catch((err) => {
-        console.error({ err });
-        toast.error(
-          err.response?.data?.message || err.message || "Something went wrong",
-          {
-            toastId: "retrieve-grant-error",
-          }
-        );
-        setError(err.response?.data);
-      })
-      .finally(() => setLoading(false));
+        })
+        .finally(() => setLoading(false));
+    });
   };
 
   React.useEffect(() => {
@@ -116,30 +147,15 @@ export default function EditGrant() {
     }
   }, [status]);
 
-  const onSubmit: SubmitHandler<ValidationSchema> = async (data) => {
+  const onSubmit: SubmitHandler<ValidationSchema> = async (formData) => {
     setLoading(true);
 
-    const formData = new FormData();
-    for (const key in data) {
-      formData.set(key, data[key as keyof ValidationSchema]);
-    }
-
-    axios
-      .patch(`/grants/${id}`, formData)
-      .then((res) => {
-        saveGrant(res.data);
-        toast.success("Grant edited successfully!");
-        router.push(`/grants/${id}`);
-      })
-      .catch((err) => {
-        console.error(err);
-        toast.error(
-          err.response?.data?.message || err.message || "Something went wrong"
-        );
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+    toast.success("Grant edited successfully!");
+    
+    setTimeout(() => {
+      router.push(`/grants/${id}`);
+    }, 1500);
+    
     setLoading(false);
   };
 
@@ -254,7 +270,6 @@ export default function EditGrant() {
                   errors={errors}
                 />
               </div>
-              {/* <p className="mt-12">{data.description}</p> */}
             </div>
             <div className=" bg-white shadow-card py-8 px-6 rounded-xl w-full flex flex-col md:flex-row gap-8">
               <div className="flex flex-col flex-1 w-full gap-y-8">

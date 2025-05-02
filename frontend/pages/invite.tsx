@@ -43,7 +43,7 @@ export default function GetStarted() {
     setLoading(true);
 
     axios
-      .post(`/invites/${inviteCode}`)
+      .post(`/invites/${inviteCode}`, {})
       .then(() => {
         toast.success("Account created successfully!");
         router.push("/pools");

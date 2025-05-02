@@ -52,9 +52,7 @@ export default function PoolsCheckout() {
             id: pool.id,
             amount: pool.amount,
           })),
-        },
-        {
-          withCredentials: true,
+          withCredentials: true // Include as part of the data object for static site
         }
       )
       .then((res) => setData(res.data))

@@ -42,7 +42,17 @@ const nextConfig = {
         hostname: "i.gyazo.com",
       },
     ],
+    unoptimized: true, // Add this for static export
   },
+  trailingSlash: true, // Add this for better static routing
+  // Configure static export
+  exportPathMap: async function() {
+    return {
+      '/': { page: '/' },
+      '/404': { page: '/404' },
+      '/grants': { page: '/grants' }
+    };
+  }
 }
 
 module.exports = nextConfig

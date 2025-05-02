@@ -48,45 +48,111 @@ const GrantSearchModal = ({
 
   const getGrant = (grantId: string) => {
     setLoading(true);
-    axios
-      .get(`/grants/${grantId}`)
-      .then((res) => {
-        setGrant(res.data);
-        setIsOpen(true);
-      })
-      .catch((err) => {
-        console.error({ err });
-        toast.error(
-          err.response?.data?.message || err.message || "Something went wrong",
-          {
-            toastId: "retrieve-grant-error",
+    
+    import("../../utils/staticData").then(({ loadGrants }) => {
+      loadGrants()
+        .then((grantsData) => {
+          const foundGrant = grantsData.find(g => g.id === grantId);
+          if (foundGrant) {
+            const detailGrant: GrantDetailResponse = {
+              ...foundGrant,
+              contributions: [],
+              team: [],
+              paymentAccount: {
+                id: '',
+                recipientAddress: '',
+                providerId: '',
+                provider: {
+                  id: '',
+                  name: '',
+                  type: 'STRIPE',
+                  acceptedCountries: [],
+                  denominations: [],
+                  website: '',
+                  schema: '',
+                  version: 1,
+                  createdAt: new Date(),
+                  updatedAt: new Date()
+                },
+                createdAt: new Date(),
+                updatedAt: new Date()
+              }
+            };
+            setGrant(detailGrant);
+            setIsOpen(true);
+          } else {
+            toast.error("Grant not found", {
+              toastId: "retrieve-grant-error",
+            });
           }
-        );
-      })
-      .finally(() => setLoading(false));
+        })
+        .catch((err) => {
+          console.error({ err });
+          toast.error(
+            "Failed to load grant data. Please try again later.",
+            {
+              toastId: "retrieve-grant-error",
+            }
+          );
+        })
+        .finally(() => setLoading(false));
+    });
   };
 
   const getGrants = () => {
     setLoading(true);
-    axios
-      .get("/grants", {
-        params: {
-          sort,
-          filter,
-          search,
-        },
-      })
-      .then((res) => setData(res.data))
-      .catch((err) => {
-        console.error({ err });
-        toast.error(
-          err.response?.data?.message || err.message || "Something went wrong",
-          {
-            toastId: "retrieve-grants-error",
+    
+    import("../../utils/staticData").then(({ loadGrants }) => {
+      loadGrants()
+        .then((grantsData) => {
+          let filteredData = [...grantsData];
+          
+          if (search) {
+            const searchLower = search.toLowerCase();
+            filteredData = filteredData.filter(grant => 
+              grant.name.toLowerCase().includes(searchLower) || 
+              (grant.description && grant.description.toLowerCase().includes(searchLower))
+            );
           }
-        );
-      })
-      .finally(() => setLoading(false));
+          
+          if (filter) {
+            if (filter === "funded") {
+              filteredData = filteredData.filter(grant => grant.amountRaised > 0);
+            } else if (filter === "underfunded") {
+              filteredData = filteredData.filter(grant => grant.amountRaised === 0);
+            }
+          }
+          
+          if (sort) {
+            switch(sort) {
+              case "newest":
+                filteredData.sort((a, b) => b.id.localeCompare(a.id));
+                break;
+              case "oldest":
+                filteredData.sort((a, b) => a.id.localeCompare(b.id));
+                break;
+              case "most_funded":
+                filteredData.sort((a, b) => (b.amountRaised || 0) - (a.amountRaised || 0));
+                break;
+              case "most_backed":
+                filteredData.sort((a, b) => (b.contributions?.length || 0) - (a.contributions?.length || 0));
+                break;
+            }
+          }
+          
+          setData(filteredData);
+        })
+        .catch((err) => {
+          console.error({ err });
+          toast.error(
+            "Failed to load grants data. Please try again later.",
+            {
+              toastId: "retrieve-grants-error",
+            }
+          );
+        })
+        .finally(() => setLoading(false));
+    });
   };
 
   React.useEffect(() => {

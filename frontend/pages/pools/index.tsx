@@ -33,25 +33,87 @@ export default function Pools() {
 
   const getPools = () => {
     setLoading(true);
-    axios
-      .get("/pools", {
-        params: {
-          sort,
-          filter,
-          search,
-        },
-      })
-      .then((res) => setData(res.data))
-      .catch((err) => {
-        console.error({ err });
-        toast.error(
-          err.response?.data?.message || err.message || "Something went wrong",
-          {
-            toastId: "retrieve-pools-error",
+    
+    import("../../utils/staticData").then(({ loadGrants }) => {
+      loadGrants()
+        .then((grantsData) => {
+          const poolsData: PoolResponse[] = [
+            {
+              id: "pool-1",
+              name: "DIGSHIBUYA Pool 2023",
+              description: "A matching pool for DIGSHIBUYA projects",
+              image: null,
+              paid: false,
+              verified: true,
+              startDate: new Date(),
+              endDate: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000),
+              createdAt: new Date(),
+              updatedAt: new Date(),
+              amountRaised: 50000
+            },
+            {
+              id: "pool-2",
+              name: "DIGSHIBUYA Pool 2024",
+              description: "A new matching pool for DIGSHIBUYA projects",
+              image: null,
+              paid: false,
+              verified: true,
+              startDate: new Date(),
+              endDate: new Date(Date.now() + 60 * 24 * 60 * 60 * 1000),
+              createdAt: new Date(),
+              updatedAt: new Date(),
+              amountRaised: 75000
+            }
+          ];
+          
+          let filteredPools = [...poolsData];
+          
+          if (search) {
+            const searchLower = search.toLowerCase();
+            filteredPools = filteredPools.filter(pool => 
+              pool.name.toLowerCase().includes(searchLower) || 
+              (pool.description && pool.description.toLowerCase().includes(searchLower))
+            );
           }
-        );
-      })
-      .finally(() => setLoading(false));
+          
+          if (filter) {
+            if (filter === "ended") {
+              filteredPools = filteredPools.filter(pool => new Date(pool.endDate) < new Date());
+            } else if (filter === "not_ended") {
+              filteredPools = filteredPools.filter(pool => new Date(pool.endDate) >= new Date());
+            }
+          }
+          
+          if (sort) {
+            switch(sort) {
+              case "newest":
+                filteredPools.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
+                break;
+              case "oldest":
+                filteredPools.sort((a, b) => a.createdAt.getTime() - b.createdAt.getTime());
+                break;
+              case "most_funded":
+                filteredPools.sort((a, b) => b.amountRaised - a.amountRaised);
+                break;
+              case "most_backed":
+                filteredPools.sort(() => Math.random() - 0.5);
+                break;
+            }
+          }
+          
+          setData(filteredPools);
+        })
+        .catch((err) => {
+          console.error({ err });
+          toast.error(
+            "Failed to load pools data. Please try again later.",
+            {
+              toastId: "retrieve-pools-error",
+            }
+          );
+        })
+        .finally(() => setLoading(false));
+    });
   };
 
   React.useEffect(() => {
