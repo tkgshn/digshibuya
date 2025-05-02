@@ -158,6 +158,33 @@ jobs:
           echo "Build output verified successfully"
 
       # GitHub Pagesにデプロイするためのアーティファクトをアップロード
+      - name: Check build output
+        run: |
+          echo "Checking build output directory:"
+          ls -la frontend/
+          
+          if [ -d "frontend/out" ]; then
+            echo "Found out directory in frontend/"
+          elif [ -d "frontend/.next" ]; then
+            echo "Found .next directory in frontend/"
+          fi
+          
+          # Create out directory if it doesn't exist
+          mkdir -p frontend/out
+          
+          # Copy necessary files to out directory
+          if [ ! -d "frontend/out" ] || [ -z "$(ls -A frontend/out)" ]; then
+            echo "Copying .next/static to out directory"
+            mkdir -p frontend/out/_next
+            cp -r frontend/.next/static frontend/out/_next/ || echo "No static files to copy"
+            
+            # Copy public directory to out
+            cp -r frontend/public/* frontend/out/ || echo "No public files to copy"
+          fi
+          
+          echo "Final out directory contents:"
+          ls -la frontend/out/
+
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
