@@ -1,7 +1,7 @@
 # DIGSHIBUYA 参加型寄付 💰
 
 DIGSHIBUYAの一環で参加型寄付を実験するプロジェクトのドキュメントです。
-詳細は、 https://digshibuya-vercel.vercel.app をご覧ください。
+詳細は、 https://donation.digshibuya.vercel.app をご覧ください。
 
 
 このプロジェクトはOwockiが率いるSupermodulerチームが「Simple Grant」という名で開発されていたが、[頓挫](https://github.com/supermodularxyz/simplegrants)。[現在はGitcoinの下でWeb2 QFツールが開発されているが、途中。](https://github.com/gitcoinco/simplegrants.xyz) この状況により、~~DigDAO マッチングドネーション~~ （DIGSHIBUYA 参加型寄付）では元々のツールを使うことにした。
@@ -37,7 +37,7 @@ DIGSHIBUYA 参加型寄付では、Vercelにデプロイしています。静的
 
 このプロジェクトには、Quadratic Funding（QF）とCOCM QFの比較分析ページが含まれています。分析ページでは、DIGSHIBUYAの寄付データを使用して、通常のQFとCOCM QFの違いを視覚的に確認できます。
 
-- [分析ページへのリンク](https://digshibuya-vercel.vercel.app/analysis)
+- [分析ページへのリンク](https://donation.digshibuya.vercel.app/analysis)
 - [QF/COCM詳細分析](https://tkgshn.github.io/DIGSHIBUYA_QF_COCM/)
 - [プロジェクト振り返り記事](https://note.com/tkgshn/n/na33eddfb0798)
 

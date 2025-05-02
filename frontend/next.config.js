@@ -44,6 +44,7 @@ const nextConfig = {
     ],
     unoptimized: true, // For static export
   },
+  output: 'export', // Essential for static site generation
   trailingSlash: true
 }
 
