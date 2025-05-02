@@ -185,10 +185,29 @@ jobs:
           echo "Final out directory contents:"
           ls -la frontend/out/
 
+      - name: Prepare artifact directory
+        run: |
+          # Create a directory for the GitHub Pages artifact
+          mkdir -p _site
+          
+          # Copy the frontend build output to the artifact directory
+          cp -r frontend/out/* _site/
+          
+          # Create a .nojekyll file to disable Jekyll processing
+          touch _site/.nojekyll
+          
+          # Create a simple index.html in the root if it doesn't exist
+          if [ ! -f "_site/index.html" ]; then
+            echo '<meta http-equiv="refresh" content="0;url=./frontend/out/index.html">' > _site/index.html
+          fi
+          
+          echo "Final artifact directory contents:"
+          ls -la _site/
+
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: frontend/out
+          path: _site
 
   # デプロイメントジョブ (PRではスキップ)
   deploy:
