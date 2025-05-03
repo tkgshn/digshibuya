@@ -1,11 +1,10 @@
 {
   "version": 2,
   "buildCommand": "npm run build",
-  "outputDirectory": "out",
+  "outputDirectory": ".next",
   "installCommand": "npm install",
   "framework": "nextjs",
   "rewrites": [
-    { "source": "/api/(.*)", "destination": "/api/mock.json" },
-    { "source": "/(.*)", "destination": "/index.html" }
+    { "source": "/api/(.*)", "destination": "/api/mock.json" }
   ]
 }

@@ -1,6 +1,6 @@
-# DIGSHIBUYA 参加型寄付 💰
+# ETIC: Beyond カンファレンス 2025でのQuadratic Votingを使った資金分配実験 💰
 
-DIGSHIBUYAの一環で参加型寄付を実験するプロジェクトのドキュメントです。
+ETIC: Beyond カンファレンス 2025でQuadratic Votingを使った資金分配実験のプロジェクトドキュメントです。
 詳細は、 https://donation.digshibuya.vercel.app をご覧ください。
 
 
